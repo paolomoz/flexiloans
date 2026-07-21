@@ -1,5 +1,6 @@
 /* cta-band — closing CTA. Default/centered: navy full-bleed band.
    split: plum rounded card (7|5). bare: plum band, button only.
+   card: rounded navy card on paper (loan/about).
    Band paint keys on the block's section container class (band-background
    pattern — no section-metadata). */
 
@@ -7,7 +8,8 @@ main .section.cta-band-container {
   background: var(--navy-trust);
 }
 
-main .section.cta-band-container:has(.cta-band.split) {
+main .section.cta-band-container:has(.cta-band.split),
+main .section.cta-band-container:has(.cta-band.card) {
   background: none;
 }
 
@@ -92,6 +94,14 @@ main .section.cta-band-container:has(.cta-band.bare) {
 .cta-band.split .cta-band-actions {
   justify-content: flex-end;
   margin-top: 0;
+}
+
+/* ---------- card — rounded navy card on paper (loan/about) ---------- */
+.cta-band.card {
+  background: var(--navy-trust);
+  border-radius: var(--r-band);
+  padding: var(--sp-6) var(--sp-5);
+  max-width: none;
 }
 
 /* ---------- bare — button(s) only on the plum band ---------- */
