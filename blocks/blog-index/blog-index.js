@@ -31,8 +31,8 @@ export default function decorate(block) {
     go.setAttribute('aria-hidden', 'true');
     go.textContent = '→';
 
-    if (kicker.textContent) a.append(kicker);
-    a.append(title, go);
+    if (kicker.textContent) a.append(kicker, '\n');
+    a.append(title, '\n', go);
     index.append(a);
   });
 
