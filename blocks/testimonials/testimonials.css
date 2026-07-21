@@ -16,6 +16,16 @@
   gap: var(--sp-4);
 }
 
+/* optional kicker line above the quote mark (business-loan truth) */
+.testimonials .testi-kicker {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--navy-trust);
+  margin-bottom: calc(-1 * var(--sp-2));
+  max-width: none;
+}
+
 .testimonials .quote-mark {
   width: 36px;
   height: 28px;
