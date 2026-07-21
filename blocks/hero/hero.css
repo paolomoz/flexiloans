@@ -120,3 +120,104 @@ main .section.hero-container {
   .hero .hero-figure { margin-top: var(--sp-4); }
   .hero .hero-figure img { max-height: 380px; }
 }
+
+/* check-list variant (term-loan): white benefit lines with green check glyphs */
+.hero ul.hero-checks {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--sp-4);
+  display: grid;
+  gap: 10px;
+}
+
+.hero ul.hero-checks li {
+  color: rgb(255 255 255 / 92%);
+  font-size: 1.0625rem;
+  padding-left: 30px;
+  position: relative;
+}
+
+.hero ul.hero-checks li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--tarakki-green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a3254' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 11px no-repeat;
+}
+
+/* cover variant (term-loan banner): full-bleed crop anchored right-bottom */
+.hero.cover .hero-figure {
+  align-self: stretch;
+  justify-content: stretch;
+}
+
+.hero .hero-card .icon,
+.hero .hero-card img {
+  width: 48px;
+  height: 48px;
+}
+
+.hero.cover .hero-figure img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: right bottom;
+}
+
+/* aside card (business-loan apply-card): paper card in the right column */
+.hero .hero-card {
+  place-self: center end;
+  background: var(--paper);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-5);
+  margin-block: 120px 48px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.hero .hero-card h2,
+.hero .hero-card h3 {
+  font-size: var(--text-title);
+  margin-top: var(--sp-3);
+}
+
+.hero .hero-card p {
+  color: var(--slate);
+  margin-top: var(--sp-2);
+}
+
+.hero .hero-card a.button.secondary {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: var(--sp-4);
+  background: var(--navy-trust);
+  color: var(--paper);
+  border: 0;
+}
+
+.hero .hero-card a.button.secondary:hover {
+  background: #0d3f6a;
+}
+
+.hero .hero-card a[href^="tel:"] {
+  display: block;
+  text-align: center;
+  margin-top: var(--sp-3);
+  color: var(--navy-trust);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (width <= 1023px) {
+  .hero .hero-card {
+    place-self: center stretch;
+    max-width: none;
+    margin-block: 0 48px;
+  }
+}
