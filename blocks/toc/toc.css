@@ -134,6 +134,7 @@ main .section.toc-left .toc a:any-link {
 main .section.toc-right > .default-content-wrapper {
   font-size: 1.125rem;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 main .section.toc-right > .default-content-wrapper p {
@@ -172,12 +173,16 @@ main .section.toc-right > .default-content-wrapper strong {
   color: var(--navy-trust);
 }
 
-/* left variant — legal document register */
+/* left variant — legal document register.
+   overflow-wrap: anywhere — legal prose quotes verbatim long URLs; without it
+   the article track's min-content blows past the viewport on mobile
+   (deploy-log gap 11: privacy-policy scrollWidth 965 at 375) */
 main .section.toc-left > .default-content-wrapper {
   grid-column: 2;
   max-width: 70ch;
   font-size: var(--text-body);
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 main .section.toc-left > .default-content-wrapper p {
@@ -228,9 +233,10 @@ main .section.toc-left > .default-content-wrapper h2:first-child {
 
 /* ---------- responsive ---------- */
 @media (width <= 1023px) {
-  /* left rail becomes a static bordered index card above the article */
+  /* left rail becomes a static bordered index card above the article;
+     minmax(0, 1fr) so long unbreakable tokens can't widen the track */
   main .section.toc-left {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   main .section.toc-left > .default-content-wrapper {
