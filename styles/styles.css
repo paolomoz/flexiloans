@@ -298,6 +298,12 @@ main > .section {
   padding-block: var(--sp-section);
 }
 
+/* the consumed metadata block leaves an empty section — collapse it */
+main > div:empty,
+main > .section:empty {
+  display: none;
+}
+
 main > .section > div {
   max-width: var(--container);
   margin: 0 auto;
