@@ -56,3 +56,27 @@
 .faq .faq-answer li {
   margin-top: var(--sp-1);
 }
+
+/* document groups (open-first variant, mumbai documents-required): each list
+   item leads with a navy file glyph per the module truth */
+.faq.open-first .faq-answer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.faq.open-first .faq-answer li {
+  position: relative;
+  padding-left: 28px;
+  margin-top: var(--sp-2);
+  color: var(--ink);
+}
+
+.faq.open-first .faq-answer li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a3254' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E") center / contain no-repeat;
+}
