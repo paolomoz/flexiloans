@@ -46,9 +46,12 @@ export default function decorate(block) {
   nodes.forEach((el) => {
     const media = el.matches('picture, img') ? el : el.querySelector('picture, img');
     if (media) {
-      // small icon inside the open card stays card content; page media → figure
+      // small icon inside the open card stays card content; page media → figure.
+      // The icon is authored after the card h2 (an icon row before it would be
+      // swallowed by the figure) but renders ABOVE the card title per design
+      // truth (deploy-log finding 12).
       if (card && (media.getAttribute('width') === null || Number(media.getAttribute('width')) <= 64)) {
-        card.append(el);
+        card.prepend(el);
         return;
       }
       figure.append(media);
