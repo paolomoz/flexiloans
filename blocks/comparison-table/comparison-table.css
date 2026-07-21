@@ -34,6 +34,7 @@
 }
 
 .comparison-table thead th.fl {
+  /* impeccable-disable-next-line design-system-color — captured canon.css value (truth .compare-table thead th.fl) */
   background: #0d3f6a;
 }
 
@@ -71,4 +72,11 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
+}
+
+/* "sometimes" cells carry an amber caution triangle (block-local accent —
+   the site palette has no warning token; amber requested at polish review) */
+.comparison-table .cell-ic.warn {
+  /* impeccable-disable-next-line design-system-color — intentional warning accent, no palette token */
+  stroke: #b45309;
 }
