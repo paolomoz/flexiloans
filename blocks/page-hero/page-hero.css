@@ -1,0 +1,247 @@
+/* page-hero — gradient band page opener. The fixed header overlays the page
+   (height 0 in flow), so the copy reserves its own top padding. */
+
+main .section.page-hero-container {
+  padding-block: 0;
+  background: var(--hero-gradient);
+  overflow: hidden;
+}
+
+.page-hero .page-hero-copy {
+  padding-block: 140px 64px;
+}
+
+/* ---------- crumbs (breadcrumb variant) ---------- */
+.page-hero .page-hero-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: var(--sp-3);
+}
+
+.page-hero .page-hero-crumbs a {
+  color: rgb(255 255 255 / 88%);
+  text-decoration: none;
+}
+
+.page-hero .page-hero-crumbs a:where(:hover) {
+  text-decoration: underline;
+}
+
+.page-hero .page-hero-crumbs a[aria-current="page"] {
+  color: #fff;
+}
+
+/* ---------- eyebrow / heading / lede ---------- */
+.page-hero .page-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(255 255 255 / 88%);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: var(--sp-3);
+}
+
+.page-hero .page-hero-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tarakki-green);
+}
+
+.page-hero h1 {
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 24ch;
+}
+
+.page-hero .page-hero-lede {
+  color: rgb(255 255 255 / 85%);
+  font-size: var(--text-lede);
+  line-height: 1.55;
+  margin-top: var(--sp-3);
+  max-width: 56ch;
+}
+
+.page-hero .page-hero-lede a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.page-hero .page-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.page-hero .page-hero-ctas p.button-wrapper {
+  margin: 0;
+}
+
+/* the ghost CTA renders inverse on the gradient */
+.page-hero a.button.accent {
+  color: var(--paper);
+  border-color: rgb(255 255 255 / 75%);
+}
+
+.page-hero a.button.accent:hover {
+  color: var(--paper);
+  border-color: #fff;
+  background: rgb(255 255 255 / 8%);
+}
+
+/* ---------- art (default + tabs variants) ---------- */
+.page-hero .page-hero-grid {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: var(--sp-5);
+  align-items: center;
+}
+
+.page-hero .page-hero-figure {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.page-hero .page-hero-figure img {
+  width: min(100%, 260px);
+  height: auto;
+}
+
+/* ---------- centered variant (contact) ---------- */
+.page-hero.centered .page-hero-copy {
+  padding-block: 148px 72px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-hero.centered h1 {
+  max-width: 26ch;
+}
+
+.page-hero.centered .page-hero-lede {
+  max-width: 52ch;
+}
+
+.page-hero.centered .page-hero-ctas {
+  justify-content: center;
+}
+
+/* ---------- tabs variant (faq resources, company band) ---------- */
+.page-hero.tabs .page-hero-copy {
+  padding-block: 128px 0;
+}
+
+.page-hero.tabs .page-hero-grid {
+  grid-template-columns: 7fr 5fr;
+}
+
+.page-hero.tabs .page-hero-figure img {
+  width: min(100%, 310px);
+}
+
+.page-hero .page-hero-tabs {
+  display: flex;
+  gap: var(--sp-5);
+  margin-top: var(--sp-6);
+  border-top: 1px solid rgb(255 255 255 / 22%);
+}
+
+.page-hero .page-hero-tabs a {
+  color: rgb(255 255 255 / 78%);
+  text-decoration: none;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 16px 2px 14px;
+  border-bottom: 3px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.page-hero .page-hero-tabs a:hover {
+  color: #fff;
+  border-bottom-color: rgb(255 255 255 / 45%);
+}
+
+.page-hero .page-hero-tabs a[aria-current="page"] {
+  color: #fff;
+  font-weight: 700;
+  border-bottom-color: #fff;
+}
+
+.page-hero .page-hero-tabs a:focus-visible {
+  outline: 3px solid rgb(255 255 255 / 85%);
+  outline-offset: -3px;
+}
+
+/* ---------- entrance ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .page-hero .page-hero-copy > * {
+    animation: page-hero-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  }
+
+  .page-hero .page-hero-copy > *:nth-child(2) { animation-delay: 80ms; }
+  .page-hero .page-hero-copy > *:nth-child(3) { animation-delay: 160ms; }
+  .page-hero .page-hero-copy > *:nth-child(4) { animation-delay: 240ms; }
+
+  .page-hero .page-hero-figure {
+    animation: page-hero-rise 800ms cubic-bezier(0.22, 1, 0.36, 1) 120ms backwards;
+  }
+
+  @keyframes page-hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@media (width <= 1023px) {
+  .page-hero .page-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-hero .page-hero-copy,
+  .page-hero.centered .page-hero-copy {
+    padding-block: 120px 48px;
+  }
+
+  .page-hero.tabs .page-hero-copy {
+    padding-block: 116px 0;
+  }
+
+  .page-hero .page-hero-figure {
+    justify-content: center;
+  }
+}
+
+@media (width <= 767px) {
+  .page-hero .page-hero-figure {
+    display: none;
+  }
+
+  .page-hero .page-hero-tabs {
+    gap: var(--sp-4);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

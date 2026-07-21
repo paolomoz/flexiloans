@@ -1,0 +1,66 @@
+/* values-row — ruled 5-cell illustration + label row on the lavender band
+   (about our-values). Band painted on the section container. */
+
+main .section.values-row-container {
+  background: var(--lavender-veil);
+}
+
+.values-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.values-row .value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sp-2) var(--sp-3) 0;
+}
+
+.values-row .value + .value {
+  border-left: 1px solid rgb(10 50 84 / 14%);
+}
+
+.values-row .value img {
+  height: 104px;
+  width: auto;
+  object-fit: contain;
+}
+
+.values-row .value .value-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--navy-trust);
+  margin-top: var(--sp-3);
+}
+
+@media (width <= 1023px) {
+  .values-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--sp-5);
+  }
+
+  .values-row .value + .value {
+    border-left: 0;
+  }
+
+  .values-row .value:nth-child(2n) {
+    border-left: 1px solid rgb(10 50 84 / 14%);
+  }
+
+  .values-row .value:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (width <= 767px) {
+  .values-row {
+    grid-template-columns: 1fr;
+  }
+
+  .values-row .value:nth-child(2n) {
+    border-left: 0;
+  }
+}

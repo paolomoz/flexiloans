@@ -1,0 +1,74 @@
+/* comparison-table — 4-col data table, navy thead, FlexiLoans column
+   highlighted (ice-wash body cells, deeper navy head cell), inline check/x */
+
+.comparison-table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.comparison-table table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  font-size: 0.9375rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+  text-align: left;
+  padding: 14px 20px;
+}
+
+.comparison-table thead th {
+  background: var(--navy-trust);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+.comparison-table thead th.fl {
+  background: #0d3f6a;
+}
+
+.comparison-table td {
+  color: var(--slate);
+}
+
+.comparison-table tbody tr + tr td {
+  border-top: 1px solid var(--hairline);
+}
+
+.comparison-table tbody th {
+  font-weight: 600;
+  color: var(--navy-trust);
+  border-top: 1px solid var(--hairline);
+}
+
+.comparison-table tbody tr:first-child th {
+  border-top: 0;
+}
+
+.comparison-table td.fl {
+  background: var(--ice-wash);
+  color: var(--navy-trust);
+  font-weight: 600;
+}
+
+.comparison-table .cell-ic {
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin-right: 6px;
+  stroke: currentcolor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}

@@ -1,0 +1,63 @@
+/* article-header — guide opener (migrated/cancelled-cheque). Opens the page:
+   the fixed-overlay header occupies no flow height, so this section reserves
+   the top offset itself (132px desktop / 120px mobile, per the hero pattern).
+   The meta hairline closes the opener; the article section supplies the
+   rhythm below. */
+
+main .section.article-header-container {
+  padding-block: 132px 0;
+}
+
+.article-header .article-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--slate);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.article-header .article-kicker::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tarakki-green);
+}
+
+.article-header .article-title {
+  font-size: var(--text-headline);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 30ch;
+  margin-top: var(--sp-3);
+}
+
+.article-header .article-lede {
+  color: var(--slate);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  max-width: 52ch;
+  margin-top: var(--sp-3);
+}
+
+.article-header .article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+  margin-top: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--slate);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (width <= 767px) {
+  main .section.article-header-container {
+    padding-block: 120px 0;
+  }
+}

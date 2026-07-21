@@ -1,0 +1,114 @@
+/* contact-form — presentational form card (migrated/about-us/contact).
+   Section head (h2 + sub) is default content before the block — centered. */
+
+main .section.contact-form-container .default-content-wrapper {
+  text-align: center;
+}
+
+main .section.contact-form-container .default-content-wrapper p {
+  margin-inline: auto;
+  max-width: 62ch;
+}
+
+.contact-form .cf-card {
+  max-width: 760px;
+  margin-inline: auto;
+  background: var(--paper);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+}
+
+.contact-form .cf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.contact-form .cf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form .cf-field.cf-full {
+  grid-column: 1 / -1;
+}
+
+.contact-form .cf-field label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* required marker — palette carries no red; semantics via required attr */
+.contact-form .cf-req {
+  color: var(--slate);
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.contact-form .cf-consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+.contact-form .cf-consent input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  accent-color: var(--navy-trust);
+}
+
+.contact-form .cf-field input,
+.contact-form .cf-field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-control);
+  padding: 12px 14px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.contact-form .cf-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.contact-form .cf-field input:focus-visible,
+.contact-form .cf-field textarea:focus-visible {
+  outline: none;
+  border-color: var(--navy-trust);
+  box-shadow: 0 0 0 3px rgb(10 50 84 / 25%);
+}
+
+.contact-form .cf-submit {
+  grid-column: 1 / -1;
+  width: 100%;
+  justify-content: center;
+}
+
+.contact-form .cf-note {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+@media (width <= 767px) {
+  .contact-form .cf-card {
+    padding: var(--sp-5) var(--sp-4);
+  }
+
+  .contact-form .cf-grid {
+    grid-template-columns: 1fr;
+  }
+}

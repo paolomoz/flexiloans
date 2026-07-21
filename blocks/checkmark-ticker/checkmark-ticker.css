@@ -1,0 +1,81 @@
+/* checkmark-ticker — navy strip of check chips under the hero (term-loan).
+   Band painted on the section container (band-background pattern). */
+
+main .section.checkmark-ticker-container {
+  background: var(--navy-trust);
+  padding-block: 0;
+}
+
+/* the strip runs full-bleed (prototype: .ticker-row max-width none) */
+main .section.checkmark-ticker-container > .checkmark-ticker-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+/* strip runs edge-to-edge feel: rules divide equal cells */
+.checkmark-ticker .ticker-row {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checkmark-ticker .ticker-row li {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px var(--sp-3);
+  color: rgb(255 255 255 / 92%);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.checkmark-ticker .ticker-row li + li {
+  border-left: 1px solid rgb(255 255 255 / 18%);
+}
+
+.checkmark-ticker .ticker-row svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  stroke: rgb(255 255 255 / 80%);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+@media (width <= 1023px) {
+  .checkmark-ticker .ticker-row {
+    flex-wrap: wrap;
+  }
+
+  .checkmark-ticker .ticker-row li {
+    flex: 1 1 50%;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .checkmark-ticker .ticker-row li:nth-child(3) {
+    border-left: 0;
+  }
+
+  .checkmark-ticker .ticker-row li:nth-child(n+3) {
+    border-top: 1px solid rgb(255 255 255 / 18%);
+  }
+}
+
+@media (width <= 767px) {
+  .checkmark-ticker .ticker-row li {
+    flex: 1 1 100%;
+    border-left: 0;
+  }
+
+  .checkmark-ticker .ticker-row li + li {
+    border-left: 0;
+    border-top: 1px solid rgb(255 255 255 / 18%);
+  }
+}

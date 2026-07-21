@@ -1,0 +1,150 @@
+/* split-feature — image|copy split (about organisation/vision, term-loan
+   example + key-features). Band paint keys on the section container:
+   rev mirrors our-vision's lavender band; the split-list composition
+   (key-features) sits on ice-wash. */
+
+main .section.split-feature-container:has(.split-feature.rev) {
+  background: var(--lavender-veil);
+}
+
+main .section.split-feature-container:has(.split-feature.list) {
+  background: var(--ice-wash);
+}
+
+.split-feature .split-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--sp-6);
+  align-items: center;
+}
+
+.split-feature .split-figure {
+  display: flex;
+  justify-content: center;
+}
+
+.split-feature .split-figure img {
+  max-height: 340px;
+  width: auto;
+  object-fit: contain;
+}
+
+.split-feature .split-copy h2 {
+  font-size: var(--text-headline);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.split-feature .split-copy p {
+  color: var(--slate);
+  margin-top: var(--sp-3);
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+.split-feature .split-copy p.button-wrapper {
+  margin-top: var(--sp-5);
+}
+
+/* ---------- rev — copy 7 | figure 5, mirrored ---------- */
+.split-feature.rev .split-grid {
+  grid-template-columns: 7fr 5fr;
+}
+
+.split-feature.rev .split-figure {
+  order: 2;
+}
+
+/* ---------- framed — lavender rounded panel (term-loan example) ---------- */
+.split-feature.framed .split-grid {
+  background: var(--lavender-veil);
+  border-radius: var(--r-band);
+  padding: var(--sp-5);
+  gap: var(--sp-5);
+}
+
+.split-feature.framed .split-figure img {
+  border-radius: var(--r-card);
+  width: 100%;
+  max-height: none;
+  object-fit: cover;
+}
+
+.split-feature.framed .split-copy h3 {
+  font-size: var(--text-title);
+  font-weight: 700;
+}
+
+.split-feature.framed .split-copy p {
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+/* ---------- ruled check list ---------- */
+.split-feature ul.split-list {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  border-top: 1px solid rgb(10 50 84 / 16%);
+}
+
+.split-feature ul.split-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-2);
+  border-bottom: 1px solid rgb(10 50 84 / 16%);
+  color: var(--navy-trust);
+  font-weight: 600;
+  font-size: 1.0625rem;
+}
+
+.split-feature .split-list .icon-chip {
+  width: 40px;
+  height: 40px;
+  color: var(--navy-trust);
+}
+
+.split-feature .split-list .icon-chip svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- split-list composition (key-features: intro 5 | list 7) ------ */
+.split-feature.list .split-grid {
+  align-items: start;
+}
+
+.split-feature.list .split-copy p {
+  max-width: 44ch;
+}
+
+.split-feature.list ul.split-list {
+  margin-top: 0;
+}
+
+@media (width <= 1023px) {
+  .split-feature .split-grid,
+  .split-feature.rev .split-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .split-feature.rev .split-figure {
+    order: -1;
+  }
+
+  .split-feature .split-figure img {
+    max-height: 280px;
+  }
+
+  .split-feature.framed .split-figure img {
+    max-height: none;
+  }
+}
+
+@media (width <= 767px) {
+  .split-feature.framed .split-grid {
+    padding: var(--sp-4);
+  }
+}

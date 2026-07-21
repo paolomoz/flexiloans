@@ -1,0 +1,56 @@
+/* rates-table — 2-col data table, navy thead, hairline body rules
+   (business-loan interest-rates section) */
+
+/* the interest-rates section sits on an ice band in the migrated design */
+main .section.rates-table-container {
+  background: var(--ice-wash);
+}
+
+.rates-table .table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rates-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  font-size: 0.9375rem;
+}
+
+.rates-table th,
+.rates-table td {
+  text-align: left;
+  padding: 14px 20px;
+}
+
+.rates-table thead th {
+  background: var(--navy-trust);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+.rates-table td {
+  color: var(--slate);
+}
+
+.rates-table tbody tr + tr td {
+  border-top: 1px solid var(--hairline);
+}
+
+.rates-table tbody th {
+  font-weight: 600;
+  color: var(--navy-trust);
+  border-top: 1px solid var(--hairline);
+}
+
+.rates-table tbody tr:first-child th {
+  border-top: 0;
+}

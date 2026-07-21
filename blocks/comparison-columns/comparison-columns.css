@@ -1,0 +1,75 @@
+/* comparison-columns — 4 ruled columns with dash lists on an ice band
+   (term-loan comparison section); lead column gets navy rule + paper ground */
+
+main .section.comparison-columns-container {
+  background: var(--ice-wash);
+}
+
+.comparison-columns .compare-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.comparison-columns .compare-col {
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border-top: 1.5px solid rgb(10 50 84 / 25%);
+}
+
+.comparison-columns .compare-col + .compare-col {
+  border-left: 1px solid rgb(10 50 84 / 14%);
+}
+
+.comparison-columns .compare-col.lead {
+  border-top: 3px solid var(--navy-trust);
+  background: var(--paper);
+}
+
+.comparison-columns .compare-col h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+}
+
+.comparison-columns .compare-col ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: var(--sp-3);
+  display: grid;
+  gap: 10px;
+}
+
+.comparison-columns .compare-col li {
+  color: var(--slate);
+  font-size: 0.9375rem;
+  padding-left: 18px;
+  position: relative;
+}
+
+.comparison-columns .compare-col li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 1.5px;
+  background: var(--navy-trust);
+}
+
+@media (width <= 1023px) {
+  .comparison-columns .compare-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .comparison-columns .compare-col:nth-child(odd) {
+    border-left: 0;
+  }
+}
+
+@media (width <= 767px) {
+  .comparison-columns .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-columns .compare-col + .compare-col {
+    border-left: 0;
+  }
+}

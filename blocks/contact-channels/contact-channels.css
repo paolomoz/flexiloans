@@ -1,0 +1,46 @@
+/* contact-channels — reach-us icon cards on a lavender band
+   (migrated/about-us/contact § reach-us). Cards on tint bands carry no
+   shadow (DESIGN.md § 6). */
+
+main .section.contact-channels-container {
+  background: var(--lavender-veil);
+}
+
+.contact-channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.contact-channels .channel-card {
+  background: var(--paper);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  align-items: flex-start;
+}
+
+.contact-channels .channel-card h3 {
+  font-size: 1.125rem;
+}
+
+.contact-channels .channel-card p {
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+.contact-channels .channel-card p + p {
+  margin-top: var(--sp-2);
+}
+
+.contact-channels .channel-card strong {
+  color: var(--navy-trust);
+}
+
+@media (width <= 1023px) {
+  .contact-channels {
+    grid-template-columns: 1fr;
+  }
+}

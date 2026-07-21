@@ -1,0 +1,94 @@
+/* lead-capture — phone-capture card on an ice band (migrated/loan/faq). */
+
+main .section.lead-capture-container {
+  background: var(--ice-wash);
+}
+
+.lead-capture .lc-card {
+  background: var(--paper);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--sp-6);
+}
+
+.lead-capture .lc-card h2 {
+  font-size: var(--text-title);
+}
+
+.lead-capture .lc-sub {
+  color: var(--slate);
+  margin-top: var(--sp-2);
+}
+
+.lead-capture .lc-form {
+  display: flex;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.lead-capture .lc-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.lead-capture input[type="tel"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-control);
+  padding: 12px 14px;
+}
+
+.lead-capture input[type="tel"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(10 50 84 / 25%);
+}
+
+.lead-capture .lc-consent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--sp-3);
+  color: var(--slate);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.lead-capture .lc-consent input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--navy-trust);
+  cursor: pointer;
+}
+
+.lead-capture .lc-consent img {
+  height: 16px;
+  width: auto;
+  display: inline-block;
+}
+
+@media (width <= 767px) {
+  .lead-capture .lc-card {
+    padding: var(--sp-5) var(--sp-4);
+  }
+}
+
+@media (width <= 560px) {
+  .lead-capture .lc-form {
+    flex-direction: column;
+  }
+
+  .lead-capture .lc-form .button {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,38 @@
+/* jump-nav — in-page anchor tabs on a hairline-ruled paper strip
+   (business-loan). The strip is flush (no section padding); tabs scroll
+   horizontally on narrow viewports with the scrollbar hidden. */
+
+main .section.jump-nav-container {
+  padding-block: 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.jump-nav .jump-row {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.jump-nav .jump-row::-webkit-scrollbar {
+  display: none;
+}
+
+.jump-nav .jump-row a {
+  display: inline-block;
+  white-space: nowrap;
+  color: var(--slate);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 14px 12px 12px;
+  border-bottom: 2px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+
+.jump-nav .jump-row a:hover {
+  color: var(--navy-trust);
+  border-bottom-color: var(--navy-trust);
+}

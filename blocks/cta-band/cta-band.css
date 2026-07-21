@@ -1,0 +1,120 @@
+/* cta-band — closing CTA. Default/centered: navy full-bleed band.
+   split: plum rounded card (7|5). bare: plum band, button only.
+   Band paint keys on the block's section container class (band-background
+   pattern — no section-metadata). */
+
+main .section.cta-band-container {
+  background: var(--navy-trust);
+}
+
+main .section.cta-band-container:has(.cta-band.split) {
+  background: none;
+}
+
+main .section.cta-band-container:has(.cta-band.bare) {
+  background: var(--plum-anchor);
+  padding-block: var(--sp-6);
+}
+
+/* ---------- centered (default) ---------- */
+.cta-band {
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.cta-band h2,
+.cta-band h3 {
+  color: #fff;
+  font-size: var(--text-headline);
+  font-weight: 700;
+  margin: 0;
+}
+
+.cta-band h3 {
+  font-size: var(--text-title);
+}
+
+.cta-band .cta-band-sub {
+  color: rgb(255 255 255 / 85%);
+  font-size: var(--text-lede);
+  margin-top: var(--sp-2);
+}
+
+.cta-band .cta-band-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+}
+
+.cta-band .cta-band-actions p.button-wrapper {
+  margin: 0;
+}
+
+/* the ghost CTA renders inverse on the dark bands */
+.cta-band a.button.accent {
+  color: var(--paper);
+  border-color: rgb(255 255 255 / 75%);
+}
+
+.cta-band a.button.accent:hover {
+  color: var(--paper);
+  border-color: #fff;
+  background: rgb(255 255 255 / 8%);
+}
+
+/* ---------- split — plum rounded card, copy 7 | actions 5 ---------- */
+.cta-band.split {
+  background: var(--plum-anchor);
+  border-radius: var(--r-band);
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--sp-5);
+  align-items: center;
+  padding: var(--sp-6);
+  max-width: none;
+  text-align: left;
+}
+
+.cta-band.split h2 {
+  line-height: 1.15;
+}
+
+.cta-band.split .cta-band-sub {
+  color: rgb(255 255 255 / 78%);
+  font-size: var(--text-body);
+  max-width: 44ch;
+}
+
+.cta-band.split .cta-band-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+/* ---------- bare — button(s) only on the plum band ---------- */
+.cta-band.bare {
+  max-width: none;
+}
+
+.cta-band.bare .cta-band-actions {
+  margin-top: 0;
+}
+
+@media (width <= 1023px) {
+  .cta-band.split {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-band.split .cta-band-actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (width <= 767px) {
+  .cta-band.split {
+    padding: var(--sp-5) var(--sp-4);
+  }
+}
