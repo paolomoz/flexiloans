@@ -45,6 +45,26 @@
   max-width: 34ch;
 }
 
+/* cards variant — white card chrome per row (mumbai eligibility on ice /
+   basic-documents doc cards). On the ice band the truth cards are borderless
+   paper; elsewhere they carry the hairline border of the doc-card register. */
+.chips.cards .chip-row {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--sp-4);
+}
+
+.chips.ice.cards .chip-row {
+  border-color: transparent;
+}
+
+/* single variant — one measure-width column of rows (mumbai looking-for) */
+.chips.single {
+  grid-template-columns: 1fr;
+  max-width: 68ch;
+}
+
 /* campaign figure authored as default content within the chips section */
 main .section.chips-container > .default-content-wrapper picture img {
   border-radius: var(--r-band);
