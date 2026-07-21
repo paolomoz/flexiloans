@@ -6,6 +6,11 @@ header.header {
   top: 0;
   left: 0;
   right: 0;
+
+  /* styles.css zeroes header height for flow; this element is fixed (out of
+     flow), so shrink-wrap the nav-bar — at height 0 the background could
+     never paint (the navy solidify was invisible site-wide) */
+  height: auto;
   z-index: var(--z-nav);
   background: transparent;
   transition: background-color 300ms ease;
