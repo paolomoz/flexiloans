@@ -27,6 +27,15 @@ header.header {
   header.header { background: var(--navy-trust); }
 }
 
+/* article pages (article-header opener, no gradient hero) are white at the top:
+   the transparent header would be white-on-white at scroll 0. Design truth:
+   solid navy from scroll 0 on articles (deploy-log gap 12). */
+body:has(main .section.article-header-container) header.header {
+  background: var(--navy-trust);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 8%);
+  animation: none;
+}
+
 header.header .nav-bar {
   display: flex;
   align-items: center;
