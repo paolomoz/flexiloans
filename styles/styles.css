@@ -1,149 +1,156 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * FlexiLoans — EDS foundation styles.
+ * Token contract mirrors DESIGN.md frontmatter (stardust canon, 2026-07).
+ * Fonts: Roboto (display) + Montserrat (body), self-hosted variable woff2 in
+ * /fonts, declared in styles/fonts.css (lazy-loaded); metric-matched Arial
+ * fallbacks below keep CLS at zero. Both families are user-pinned
+ * (direction.md Iteration 2) and OFL/Apache licensed.
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* palette — stardust token contract */
+  --paper: #fff;
+  --ink: #101010;
+  --slate: #45586b;
+  --navy-trust: #0a3254;
+  --tarakki-green: #00cf67;
+  --lavender-veil: #f3eff9;
+  --ice-wash: #e9f3ff;
+  --plum-anchor: #493961;
+  --plum-deep: #2d223d;
+  --hero-plum: #532d54;
+  --hero-navy: #2b5582;
+  --hairline: #d1d5db;
+  --hero-gradient: linear-gradient(0deg, var(--hero-plum) 0%, var(--hero-navy) 100%);
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* type — modular major-third scale 16/20/25/39/61 */
+  --font-display: "Roboto", "Roboto-Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Montserrat", "Montserrat-Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-display: clamp(2.35rem, 1.2rem + 3.4vw, 3.8125rem); /* → 61px */
+  --text-headline: clamp(1.75rem, 1.3rem + 1.4vw, 2.4375rem); /* → 39px */
+  --text-title: clamp(1.25rem, 1.1rem + 0.5vw, 1.5625rem); /* → 25px */
+  --text-lede: 1.25rem; /* 20px */
+  --text-body: 1rem; /* 16px */
+  --text-eyebrow: 0.8125rem; /* 13px */
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* radii — 12px card / 24px band / pill controls */
+  --r-control: 12px;
+  --r-card: 12px;
+  --r-band: 24px;
+  --r-pill: 9999px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* spacing — 4pt scale, 64px section rhythm */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 32px;
+  --sp-6: 48px;
+  --sp-section: 64px;
+  --shadow-card: 0 4px 30px rgb(0 0 0 / 10%);
+  --shadow-chip: 0 1px 2px rgb(0 0 0 / 25%);
+  --z-nav: 40;
+  --container: 1240px;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* boilerplate compatibility aliases (blocks/cards etc.) */
+  --background-color: var(--paper);
+  --light-color: var(--lavender-veil);
+  --dark-color: var(--slate);
+  --text-color: var(--ink);
 }
 
-/* fallback fonts */
+/* impeccable-disable overused-font, design-system-font — Roboto (display) +
+   Montserrat (body) are user-pinned per stardust/direction.md Iteration 2
+   (2026-07-21); the "-Fallback" faces are the metric-matched local-Arial
+   overrides required by the canon CLS discipline, not new families. */
+
+/* metric-matched fallbacks — no layout shift while the woff2s load */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+  font-family: Roboto-Fallback;
+  src: local("Arial");
+  size-adjust: 99.78%;
+  ascent-override: 93%;
+  descent-override: 24.5%;
+  line-gap-override: 0%;
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
+  font-family: Montserrat-Fallback;
+  src: local("Arial");
+  size-adjust: 112.84%;
+  ascent-override: 85.8%;
+  descent-override: 22.25%;
+  line-gap-override: 0%;
 }
 
-@media (width >= 900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
+html {
+  hanging-punctuation: first;
+  scroll-behavior: smooth;
 }
 
 body {
   display: none;
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
 }
 
 body.appear {
   display: block;
 }
 
+/* header is a fixed overlay (transparent → navy on scroll, in the fragment CSS);
+   it occupies no flow height, so its late injection causes zero layout shift */
 header {
-  height: var(--nav-height);
+  height: 0;
 }
 
-header .header,
-footer .footer {
-  visibility: hidden;
-}
-
-header .header[data-block-status="loaded"],
-footer .footer[data-block-status="loaded"] {
-  visibility: visible;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
-  scroll-margin: 40px;
+h3 {
+  font-family: var(--font-display);
+  color: var(--navy-trust);
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  scroll-margin: 90px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
-
-p,
-dl,
-ol,
-ul,
-pre,
-blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+h1 {
+  font-size: var(--text-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-code,
-pre {
-  font-size: var(--body-font-size-s);
+h2 {
+  font-size: var(--text-headline);
+  line-height: 1.2;
 }
 
-pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
-  overflow-x: auto;
-  white-space: pre;
+h3 {
+  font-size: var(--text-title);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
-main > div {
-  margin: 40px 16px;
+p {
+  text-wrap: pretty;
 }
 
 input,
@@ -153,137 +160,98 @@ button {
   font: inherit;
 }
 
-/* links */
-a:any-link {
-  color: var(--link-color);
+/* links — plain anchors render as navy text links (arrow glyphs authored in text) */
+main a:any-link {
+  color: var(--navy-trust);
+  font-weight: 600;
   text-decoration: none;
-  overflow-wrap: break-word;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 160ms ease;
 }
 
-a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+main a:hover {
+  border-bottom-color: var(--navy-trust);
 }
 
-/* buttons */
+/* buttons — decorateButtons() emits a.button.(primary|secondary|accent)
+   from <strong><a> / <em><a> / <em><strong><a>. Brand mapping:
+   primary = tarakki-green pill (Apply Now), secondary = navy fill,
+   accent = navy ghost outline. */
 p.button-wrapper {
-  margin: 12px 0;
+  margin: 0;
 }
 
 a.button:any-link,
 button.button {
-  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
   max-width: 100%;
-  margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  font-size: var(--text-body);
   line-height: 1.25;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  padding: 14px 32px;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 160ms cubic-bezier(0.22, 1, 0.36, 1), background-color 160ms ease;
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+a.button:focus-visible,
+button.button:focus-visible {
+  outline: 3px solid var(--hero-navy);
+  outline-offset: 2px;
 }
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  background: var(--tarakki-green);
+  color: var(--navy-trust);
+  box-shadow: var(--shadow-chip);
 }
 
 a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
-}
-
-a.button.primary[aria-disabled="true"],
-a.button.primary[aria-disabled="true"]:hover,
-a.button.primary[aria-disabled="true"]:focus-visible,
-button.button.primary:disabled,
-button.button.primary:disabled:hover,
-button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+button.button.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(10 50 84 / 22%);
+  border-bottom-color: transparent;
+  color: var(--navy-trust);
 }
 
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+  background: var(--navy-trust);
+  color: var(--paper);
+  font-weight: 600;
+  padding: 14px 28px;
 }
 
 a.button.secondary:hover,
-a.button.secondary:focus-visible,
-button.button.secondary:hover,
-button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+button.button.secondary:hover {
+  /* impeccable-disable-next-line design-system-color — captured canon.css btn-secondary:hover value */
+  background: #0d3f6a;
+  border-bottom-color: transparent;
+  color: var(--paper);
 }
 
-a.button.secondary[aria-disabled="true"],
-a.button.secondary[aria-disabled="true"]:hover,
-a.button.secondary[aria-disabled="true"]:focus-visible,
-button.button.secondary:disabled,
-button.button.secondary:disabled:hover,
-button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-/* high-impact call-to-action */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background: transparent;
+  color: var(--navy-trust);
+  font-weight: 600;
+  padding: 13px 28px;
+  border: 1.5px solid var(--navy-trust);
 }
 
 a.button.accent:hover,
-a.button.accent:focus-visible,
-button.button.accent:hover,
-button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+button.button.accent:hover {
+  background: rgb(10 50 84 / 6%);
+  border-bottom-color: var(--navy-trust);
 }
 
-a.button.accent[aria-disabled="true"],
-a.button.accent[aria-disabled="true"]:hover,
-a.button.accent[aria-disabled="true"]:focus-visible,
-button.button.accent:disabled,
-button.button.accent:disabled:hover,
-button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
-}
-
-main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-}
-
+/* icons — decorateIcons() renders /icons/<name>.svg into span.icon */
 .icon {
   display: inline-block;
   height: 24px;
@@ -295,31 +263,103 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* icon chip — the single stroke icon system in tinted circular chips */
+.icon-chip {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ice-wash);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.icon-chip .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-chip.on-tint {
+  background: var(--paper);
+}
+
+.icon-chip.lg {
+  width: 56px;
+  height: 56px;
+}
+
+.icon-chip.lg .icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* sections — 64/48/32 rhythm, tint bands touch (no margins) */
 main > .section {
-  margin: 40px 0;
+  padding-block: var(--sp-section);
 }
 
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--sp-4);
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+/* rhythm between a section's wrappers (head → block → foot): 32px */
+main > .section > div + div {
+  margin-top: var(--sp-5);
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+/* section heads authored as default content above blocks */
+main .default-content-wrapper h2 {
+  margin-bottom: var(--sp-2);
+}
+
+main .default-content-wrapper p {
+  color: var(--slate);
+  max-width: 68ch;
+}
+
+main .default-content-wrapper p:not(:first-child) {
+  margin-top: var(--sp-2);
+}
+
+/* tint bands — painted by the owning block's section container class */
+main .section.live-status-container,
+main .section.chips-container.ice-band {
+  background: var(--ice-wash);
+}
+
+main .section.chips-container:not(.ice-band),
+main .section.blog-index-container,
+main .section.partner-strip-container {
+  background: var(--lavender-veil);
+}
+
+main .section.chips-container:has(.chips.ice) {
+  background: var(--ice-wash);
+}
+
+@media (width <= 1023px) {
+  main > .section {
+    padding-block: var(--sp-6);
   }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+@media (width <= 767px) {
+  main > .section {
+    padding-block: var(--sp-5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

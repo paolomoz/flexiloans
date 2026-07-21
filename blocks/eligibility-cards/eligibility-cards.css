@@ -1,0 +1,40 @@
+/* eligibility-cards — bordered paper cards, hover lifts to the canon shadow */
+
+.eligibility-cards .elig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.eligibility-cards .elig-card {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.eligibility-cards .elig-card:hover {
+  box-shadow: var(--shadow-card);
+  border-color: transparent;
+}
+
+.eligibility-cards .elig-card p {
+  color: var(--slate);
+  margin-top: var(--sp-2);
+}
+
+.eligibility-cards .elig-card a {
+  display: inline-block;
+  margin-top: var(--sp-3);
+}
+
+@media (width <= 767px) {
+  .eligibility-cards .elig-grid {
+    grid-template-columns: 1fr;
+  }
+}

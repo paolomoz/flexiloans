@@ -1,6 +1,4 @@
 import {
-  loadHeader,
-  loadFooter,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -10,6 +8,7 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  getMetadata,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -180,11 +179,56 @@ async function loadEager(doc) {
 }
 
 /**
+ * Wires the mobile nav toggle inside the static header fragment
+ * (fragment <script> tags are inert after innerHTML injection).
+ * @param {Element} el The header element
+ */
+function wireHeader(el) {
+  const toggle = el.querySelector('.nav-toggle');
+  const bar = el.querySelector('.nav-bar');
+  if (!toggle || !bar) return;
+  toggle.addEventListener('click', () => {
+    const open = bar.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && bar.classList.contains('open')) {
+      bar.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/**
+ * Loads a static chrome fragment (fragments/header.html or fragments/footer.html)
+ * into the given host element. Suppressed per page via metadata `header: off` /
+ * `footer: off`.
+ * @param {Element} el The host element (<header> or <footer>)
+ * @param {string} name The fragment name
+ */
+async function loadStaticFragment(el, name) {
+  if (!el) return;
+  const meta = getMetadata(name);
+  if (meta === 'off') return;
+  try {
+    const resp = await fetch(`${window.hlx.codeBasePath}/fragments/${name}.html`);
+    if (!resp.ok) return;
+    const html = await resp.text();
+    el.className = name;
+    el.innerHTML = html;
+    if (name === 'header') wireHeader(el);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(`failed to load ${name} fragment`, e);
+  }
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('header'));
+  loadStaticFragment(doc.querySelector('header'), 'header');
 
   const main = doc.querySelector('main');
   await loadSections(main);
@@ -193,7 +237,7 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadFooter(doc.querySelector('footer'));
+  loadStaticFragment(doc.querySelector('footer'), 'footer');
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();

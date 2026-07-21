@@ -1,0 +1,77 @@
+/* stat-ledger — plum rounded band, lead figure + ruled secondaries */
+
+.stat-ledger .stat-band {
+  background: var(--plum-anchor);
+  border-radius: var(--r-band);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--sp-6);
+  align-items: center;
+  padding: var(--sp-6);
+}
+
+.stat-ledger .num {
+  font-family: var(--font-display);
+  color: #fff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-ledger .stat-lead .num {
+  font-size: var(--text-display);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.stat-ledger .stat-lead .label {
+  color: rgb(255 255 255 / 72%);
+  font-size: 1.0625rem;
+  margin-top: var(--sp-2);
+  max-width: none;
+}
+
+.stat-ledger .stat-rest {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stat-ledger .stat-rest .stat {
+  border-left: 1px solid rgb(255 255 255 / 22%);
+  padding-left: var(--sp-4);
+}
+
+.stat-ledger .stat-rest .num {
+  font-size: var(--text-title);
+  letter-spacing: -0.01em;
+}
+
+.stat-ledger .stat-rest .label {
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.875rem;
+  margin-top: 4px;
+  max-width: none;
+}
+
+/* within the chips band the ledger sits 48px below the campaign figure */
+main .section.chips-container > .stat-ledger-wrapper {
+  margin-top: var(--sp-6);
+}
+
+@media (width <= 1023px) {
+  .stat-ledger .stat-band {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+    padding: var(--sp-5);
+  }
+
+  .stat-ledger .stat-rest .stat:first-child {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+
+@media (width <= 767px) {
+  .stat-ledger .stat-band {
+    padding: var(--sp-5) var(--sp-4);
+  }
+}

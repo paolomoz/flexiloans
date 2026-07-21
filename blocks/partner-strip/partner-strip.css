@@ -1,0 +1,29 @@
+/* partner-strip — lavender band (painted via .partner-strip-container), tighter
+   48px rhythm than standard sections */
+
+main .section.partner-strip-container {
+  padding-block: var(--sp-6);
+}
+
+.partner-strip .partner-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+}
+
+.partner-strip .partner-row img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+main .section.partner-strip-container > .default-content-wrapper {
+  text-align: center;
+  margin-top: var(--sp-4);
+}
+
+main .section.partner-strip-container > .default-content-wrapper p {
+  max-width: none;
+}

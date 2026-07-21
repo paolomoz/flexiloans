@@ -1,0 +1,255 @@
+<style>
+/* header — fixed transparent over hero, solidifies to navy across first 160px of
+   scroll (CSS scroll-driven; solid fallback). Lifted from stardust canon. */
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-nav);
+  background: transparent;
+  transition: background-color 300ms ease;
+}
+
+@supports (animation-timeline: scroll()) {
+  header.header {
+    animation: nav-solidify linear both;
+    animation-timeline: scroll();
+    animation-range: 0 160px;
+  }
+
+  @keyframes nav-solidify {
+    to { background-color: var(--navy-trust); box-shadow: 0 1px 0 rgb(255 255 255 / 8%); }
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  header.header { background: var(--navy-trust); }
+}
+
+header.header .nav-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 14px var(--sp-4);
+}
+
+header.header .nav-logo img { height: 34px; width: auto; }
+header.header .nav-links { display: flex; gap: 4px; list-style: none; margin: 0; margin-inline: auto; padding: 0; }
+header.header .nav-links > li > a {
+  display: inline-block;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 92%);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: var(--r-pill);
+  transition: background-color 160ms ease;
+}
+header.header .nav-links > li > a:hover { background: rgb(255 255 255 / 10%); }
+
+/* mini mega menu — white grouped panels, pure CSS (hover + :focus-within) */
+header.header .has-menu { position: relative; }
+header.header .has-menu > a .caret { display: inline-block; margin-left: 4px; font-size: 0.625rem; transform: translateY(-1px); opacity: 0.7; }
+header.header .mega {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 240px;
+  background: var(--paper);
+  border-radius: var(--r-card);
+  box-shadow: 0 12px 40px rgb(16 16 16 / 18%), 0 1px 2px rgb(16 16 16 / 8%);
+  padding: 18px 8px 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 180ms ease, transform 180ms cubic-bezier(0.22, 1, 0.36, 1), visibility 180ms;
+}
+header.header .mega::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+header.header .has-menu:hover .mega,
+header.header .has-menu:focus-within .mega { opacity: 1; visibility: visible; transform: none; }
+header.header .mega-cols { display: flex; gap: 8px; }
+header.header .mega-group { min-width: 200px; padding: 0 12px; }
+header.header .mega-group + .mega-group { border-left: 1px solid var(--lavender-veil); }
+header.header .mega-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--slate);
+  padding: 2px 10px 8px;
+  margin: 0;
+}
+header.header .mega ul { list-style: none; margin: 0; padding: 0; }
+header.header .mega li a {
+  display: block;
+  padding: 8px 10px;
+
+  /* impeccable-disable-next-line design-system-radius — captured canon.css value */
+  border-radius: 8px;
+  color: var(--navy-trust);
+  font-size: 0.9063rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 140ms ease;
+}
+header.header .mega li a:hover { background: var(--ice-wash); }
+header.header .nav-actions { display: flex; align-items: center; gap: 10px; }
+header.header .lang-switch { color: rgb(255 255 255 / 75%); font-size: 0.875rem; }
+header.header .lang-switch a { color: inherit; text-decoration: none; padding: 4px 6px; }
+header.header .lang-switch a[aria-current="true"] { color: #fff; font-weight: 600; }
+header.header .nav-login { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9375rem; padding: 8px 14px; }
+header.header .nav-login:hover { text-decoration: underline; }
+header.header .nav-apply {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: var(--r-pill);
+  background: var(--tarakki-green);
+  color: var(--navy-trust);
+  box-shadow: var(--shadow-chip);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px 24px;
+  font-size: 0.9375rem;
+  transition: transform 160ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+header.header .nav-apply:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgb(10 50 84 / 22%); }
+header.header .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+/* impeccable-disable-next-line design-system-radius — captured canon.css value */
+header.header .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+@media (max-width: 1023px) {
+  header.header .mega { display: none; }
+  header.header .has-menu > a .caret { display: none; }
+}
+
+@media (max-width: 767px) {
+  header.header .nav-links,
+  header.header .nav-login,
+  header.header .lang-switch { display: none; }
+  header.header .nav-toggle { display: block; margin-left: auto; }
+  header.header .nav-actions { margin-left: 0; }
+  header.header .nav-bar.open .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-trust);
+    padding: var(--sp-3) var(--sp-4) var(--sp-4);
+    box-shadow: 0 12px 24px rgb(0 0 0 / 25%);
+  }
+}
+
+@media (min-width: 768px) {
+  header.header .nav-toggle { display: none; }
+}
+</style>
+<nav class="nav-bar" aria-label="Main">
+  <a class="nav-logo" href="/">
+    <img src="/img/logo.svg" alt="FlexiLoans" width="150" height="36">
+  </a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li class="has-menu">
+      <a href="/loan/about" aria-haspopup="true">Company <span class="caret">&#9662;</span></a>
+      <div class="mega" role="menu">
+        <div class="mega-group">
+          <p class="mega-label">Company</p>
+          <ul>
+            <li><a href="/loan/about">About us</a></li>
+            <li><a href="https://flexiloans.com/loan/team">Team</a></li>
+            <li><a href="https://flexiloans.com/loan/our-people">Our people</a></li>
+            <li><a href="/about-us/contact">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li class="has-menu">
+      <a href="/loan/term-loan" aria-haspopup="true">Products <span class="caret">&#9662;</span></a>
+      <div class="mega" role="menu">
+        <div class="mega-group">
+          <p class="mega-label">Products</p>
+          <ul>
+            <li><a href="/loan/term-loan">Term Loan</a></li>
+            <li><a href="https://flexiloans.com/loan/supply-chain-finance">Supply Chain Finance</a></li>
+            <li><a href="https://flexiloans.com/loan/vendor-finance">Vendor Financing</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li class="has-menu">
+      <a href="/business-loan" aria-haspopup="true">Business Loan <span class="caret">&#9662;</span></a>
+      <div class="mega" role="menu">
+        <div class="mega-cols">
+          <div class="mega-group">
+            <p class="mega-label">Business Loan</p>
+            <ul>
+              <li><a href="/business-loan">Apply for Business Loan</a></li>
+              <li><a href="https://flexiloans.com/business-loan-interest-rate">Interest Rates and Charges</a></li>
+              <li><a href="https://flexiloans.com/benefits-and-features">Benefits of Business Loan</a></li>
+              <li><a href="https://flexiloans.com/business-loan-for-women">Business Loan for Women</a></li>
+            </ul>
+          </div>
+          <div class="mega-group">
+            <p class="mega-label">Calculator</p>
+            <ul>
+              <li><a href="/calculators/business-loan-emi-calculator">Business Loan Calculator</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="has-menu">
+      <a href="https://flexiloans.com/msme-loan" aria-haspopup="true">MSME Loan <span class="caret">&#9662;</span></a>
+      <div class="mega" role="menu">
+        <div class="mega-group">
+          <p class="mega-label">MSME Loan</p>
+          <ul>
+            <li><a href="https://flexiloans.com/msme-loan">Apply for MSME Loan</a></li>
+            <li><a href="https://flexiloans.com/msme-loan/calculator">MSME Loan Calculator</a></li>
+            <li><a href="https://flexiloans.com/msme-loan/interest-rates">Interest Rates and Charges</a></li>
+            <li><a href="https://flexiloans.com/msme-loan/eligibility-criteria">MSME Loan Eligibility</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    <li class="has-menu">
+      <a href="https://flexiloans.com/blog/" aria-haspopup="true">Resources <span class="caret">&#9662;</span></a>
+      <div class="mega" role="menu">
+        <div class="mega-cols">
+          <div class="mega-group">
+            <p class="mega-label">Learn</p>
+            <ul>
+              <li><a href="https://flexiloans.com/blog/">Blog</a></li>
+              <li><a href="/loan/faq">FAQ</a></li>
+              <li><a href="https://flexiloans.com/loan/gst-documentation-compliance-guide">GST Documentation Guide</a></li>
+            </ul>
+          </div>
+          <div class="mega-group">
+            <p class="mega-label">Calculators</p>
+            <ul>
+              <li><a href="https://flexiloans.com/calculators/gst-calculator">GST Calculator</a></li>
+              <li><a href="https://flexiloans.com/calculators/term-loan-calculator">Term Loan Calculator</a></li>
+              <li><a href="https://flexiloans.com/calculators/foreclosure-calculator">Foreclosure Calculator</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li><a href="https://flexiloans.com/loan/partner-with-us">Partner with Us</a></li>
+  </ul>
+  <div class="nav-actions">
+    <span class="lang-switch"><a href="/" aria-current="true" lang="en">English</a>&#183;<a href="https://flexiloans.com/hi" lang="hi">&#2361;&#2367;&#2306;&#2342;&#2368;</a></span>
+    <a class="nav-login" href="https://loans.flexiloans.com/?journeyName=flow_dashboard&amp;nlp=2&amp;utm_source=Website&amp;utm_medium=Web&amp;utm_campaign=organic&amp;utm_term=organic&amp;utm_content=organic">Login</a>
+    <a class="nav-apply" href="https://loans.flexiloans.com/?utm_source=Website&amp;utm_medium=Web&amp;utm_campaign=organic&amp;utm_term=organic&amp;utm_content=organic&amp;nlp=1">Apply Now</a>
+  </div>
+</nav>

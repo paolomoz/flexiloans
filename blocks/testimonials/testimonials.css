@@ -1,0 +1,62 @@
+/* testimonials — lavender-veil quote cards */
+
+.testimonials .testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.testimonials .testi-card {
+  background: var(--lavender-veil);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.testimonials .quote-mark {
+  width: 36px;
+  height: 28px;
+}
+
+.testimonials blockquote {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink);
+  flex-grow: 1;
+  margin: 0;
+}
+
+.testimonials .testi-person {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.testimonials .testi-person img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.testimonials .testi-person .name {
+  font-weight: 700;
+  color: var(--navy-trust);
+  max-width: none;
+}
+
+.testimonials .testi-person .role {
+  color: var(--slate);
+  font-size: 0.875rem;
+  margin-top: 0;
+  max-width: none;
+}
+
+@media (width <= 1023px) {
+  .testimonials .testi-grid {
+    grid-template-columns: 1fr;
+  }
+}

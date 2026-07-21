@@ -1,0 +1,73 @@
+/* chips — icon feature rows; band background painted at section level
+   (.chips-container in styles.css: lavender default, ice with .ice variant) */
+
+.chips {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+
+.chips .chip-row {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+}
+
+.chips .chip-row > div h3 {
+  font-size: 1.125rem;
+}
+
+.chips .chip-row > div p {
+  color: var(--slate);
+  margin-top: 2px;
+  font-size: 0.9375rem;
+  max-width: none;
+}
+
+/* stacked variant — 3-up, large chip above the copy (security & support) */
+.chips.stacked {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-6);
+}
+
+.chips.stacked .chip-row {
+  display: block;
+}
+
+.chips.stacked .icon-chip {
+  margin-bottom: var(--sp-3);
+}
+
+.chips.stacked .chip-row > div p {
+  margin-top: var(--sp-2);
+  font-size: var(--text-body);
+  max-width: 34ch;
+}
+
+/* campaign figure authored as default content within the chips section */
+main .section.chips-container > .default-content-wrapper picture img {
+  border-radius: var(--r-band);
+  width: 100%;
+}
+
+main .section.chips-container > .default-content-wrapper:has(picture) {
+  margin-top: var(--sp-6);
+}
+
+@media (width <= 1023px) {
+  .chips.stacked {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .chips.stacked .chip-row > div p {
+    max-width: 60ch;
+  }
+}
+
+@media (width <= 767px) {
+  .chips {
+    grid-template-columns: 1fr;
+  }
+}

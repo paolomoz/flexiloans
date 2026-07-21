@@ -1,0 +1,139 @@
+<style>
+/* footer — plum mega-footer over plum-deep legal strip (square corners, canon) */
+footer.footer {
+  background: var(--plum-anchor);
+  color: rgb(255 255 255 / 85%);
+  font-size: var(--text-body);
+}
+
+footer.footer .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--sp-4); }
+footer.footer p { margin: 0; }
+footer.footer .footer-main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+  padding-block: var(--sp-section) var(--sp-5);
+}
+footer.footer .footer-col { margin: 0; }
+footer.footer .footer-col .col-title { color: #fff; font-weight: 700; font-size: 0.9375rem; margin-bottom: var(--sp-3); }
+footer.footer .footer-col ul { list-style: none; margin: 0; padding: 0; }
+footer.footer .footer-col li { margin-top: var(--sp-2); }
+footer.footer .footer-col a { color: rgb(255 255 255 / 78%); text-decoration: none; font-size: 0.9375rem; }
+footer.footer .footer-col a:hover { color: #fff; text-decoration: underline; }
+footer.footer .footer-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--sp-5);
+  border-top: 1px solid rgb(255 255 255 / 15%);
+  padding-block: var(--sp-5);
+  font-size: 0.875rem;
+}
+footer.footer .footer-meta .meta-title { color: #fff; font-weight: 700; margin-bottom: var(--sp-2); }
+footer.footer .footer-meta .meta-title + p,
+footer.footer .footer-meta p + p { margin-top: 2px; }
+footer.footer .footer-meta .meta-gap { margin-top: var(--sp-3); }
+footer.footer .footer-meta a { color: rgb(255 255 255 / 85%); text-decoration: none; }
+footer.footer .footer-meta a:hover { text-decoration: underline; }
+footer.footer .footer-badges { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
+footer.footer .footer-badges img { height: 44px; width: auto; }
+footer.footer .footer-social { display: flex; gap: var(--sp-3); margin-top: var(--sp-2); }
+footer.footer .footer-social a { display: inline-flex; }
+footer.footer .footer-social img { width: 28px; height: 28px; filter: brightness(0) invert(1); opacity: 0.8; }
+footer.footer .footer-social a:hover img { opacity: 1; }
+footer.footer .footer-legal {
+  background: var(--plum-deep);
+  padding: var(--sp-4);
+  text-align: center;
+  font-size: 0.8125rem;
+  color: rgb(255 255 255 / 70%);
+}
+footer.footer .footer-legal p + p { margin-top: var(--sp-2); }
+footer.footer .footer-legal a { color: rgb(255 255 255 / 85%); }
+
+@media (max-width: 1023px) {
+  footer.footer .footer-main { grid-template-columns: repeat(2, 1fr); }
+  footer.footer .footer-meta { grid-template-columns: 1fr; gap: var(--sp-4); }
+}
+
+@media (max-width: 767px) {
+  footer.footer .footer-main { grid-template-columns: 1fr; }
+}
+</style>
+<div class="container">
+  <div class="footer-main">
+    <nav class="footer-col" aria-label="Business Loan">
+      <p class="col-title">Business Loan</p>
+      <ul>
+        <li><a href="/business-loan">Apply for Business Loan</a></li>
+        <li><a href="/calculators/business-loan-emi-calculator">Business Loan Calculator</a></li>
+        <li><a href="https://flexiloans.com/business-loan-interest-rate">Interest Rates and Charges</a></li>
+        <li><a href="https://flexiloans.com/benefits-and-features">Benefits of Business Loan</a></li>
+        <li><a href="https://flexiloans.com/business-loan-for-women">Business Loan for Women</a></li>
+        <li><a href="https://flexiloans.com/msme-loan">MSME Loan</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-col" aria-label="Product">
+      <p class="col-title">Product</p>
+      <ul>
+        <li><a href="/loan/about">About Us</a></li>
+        <li><a href="https://flexiloans.com/loan/team">Team</a></li>
+        <li><a href="https://flexiloans.com/loan/our-people">Our People</a></li>
+        <li><a href="https://flexiloans.com/loan/careers">Careers</a></li>
+        <li><a href="https://flexiloans.com/sitemap">Sitemap</a></li>
+        <li><a href="https://flexiloans.com/fair-practices-code">Fair Practices Code</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-col" aria-label="Resources">
+      <p class="col-title">Resources</p>
+      <ul>
+        <li><a href="https://flexiloans.com/blog/">Blog</a></li>
+        <li><a href="/loan/faq">FAQ</a></li>
+        <li><a href="https://flexiloans.com/loan/partners">Partners</a></li>
+        <li><a href="https://flexiloans.com/loan/partner-with-us">Partner with Us</a></li>
+        <li><a href="https://flexiloans.com/calculators/gst-calculator">GST Calculator</a></li>
+        <li><a href="https://flexiloans.com/calculators/term-loan-calculator">Term Loan Calculator</a></li>
+      </ul>
+    </nav>
+    <nav class="footer-col" aria-label="Legal">
+      <p class="col-title">Legal</p>
+      <ul>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="https://flexiloans.com/terms-and-conditions">Terms &amp; Conditions</a></li>
+        <li><a href="https://flexiloans.com/disclaimer">Disclaimer</a></li>
+        <li><a href="https://flexiloans.com/grievance-redressal-mechanism">Grievance Redressal Mechanism</a></li>
+        <li><a href="https://flexiloans.com/regulatory">Regulatory</a></li>
+        <li><a href="/about-us/contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-meta">
+    <div>
+      <p class="meta-title">Contact us</p>
+      <p><a href="mailto:connect@flexiloans.com">connect@flexiloans.com</a></p>
+      <p><a href="tel:02268219595">02268219595</a></p>
+      <p>Time: 10 AM to 7 PM</p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/flexiloans/" aria-label="FlexiLoans on LinkedIn"><img src="/img/linkedin.svg" alt="" width="28" height="28" loading="lazy"></a>
+        <a href="https://twitter.com/flexiloansin" aria-label="FlexiLoans on X"><img src="/img/twitter.svg" alt="" width="28" height="28" loading="lazy"></a>
+        <a href="https://www.facebook.com/FlexiLoansFinance/" aria-label="FlexiLoans on Facebook"><img src="/img/facebook.svg" alt="" width="28" height="28" loading="lazy"></a>
+        <a href="https://www.instagram.com/flexiloans_india" aria-label="FlexiLoans on Instagram"><img src="/img/instagram.svg" alt="" width="28" height="28" loading="lazy"></a>
+      </div>
+    </div>
+    <div>
+      <p class="meta-title">Corporate Address</p>
+      <p>7th Floor, South Annexe, Tower 2, One World Centre, 841, Senapati Bapat Marg, Saidham Nagar, Lower Parel, Mumbai &#8211; 400013</p>
+      <p class="meta-title meta-gap">Registered Office</p>
+      <p>No.119, 2nd Floor, Harita Towers, St. Mary's Road, Abhiramapuram, Chennai &#8211; 600 018, Tamil Nadu, India</p>
+    </div>
+    <div class="footer-badges">
+      <img src="/img/uff-logo.png" alt="Unified Fintech Forum member" loading="lazy">
+      <a href="https://play.google.com/store/apps/details?id=com.flexiloan&amp;hl=en_IN&amp;pli=1">
+        <img src="/img/google-play-badge.webp" alt="Get the FlexiLoans app on Google Play" loading="lazy">
+      </a>
+    </div>
+  </div>
+</div>
+<div class="footer-legal">
+  <p>* FlexiLoans is the trade name of Epimoney Private Limited (CIN: U71309TN1995PTC030536), a Non-Banking Financial Company (NBFC) registered with the RBI.</p>
+  <p>All Rights Reserved | <a href="https://flexiloans.com/regulatory">Regulatory</a> | <a href="https://flexiloans.com/sitemap">HTML sitemap</a></p>
+</div>
