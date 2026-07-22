@@ -13,6 +13,13 @@
 }
 
 /* standalone calculator page: the card docks over the page-hero gradient edge */
+
+/* give the docked card empty gradient to overlap: extend the hero's bottom
+   padding so the -72px dock never covers hero copy (user fix 2026-07-22) */
+main .section.page-hero-container:has(+ .section.emi-calculator-container) {
+  padding-bottom: 96px;
+}
+
 main .section.page-hero-container + .section.emi-calculator-container {
   padding-top: 0;
 }
