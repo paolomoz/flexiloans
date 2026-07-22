@@ -1,15 +1,17 @@
 version: 1
 
 # origin flips to https://flexiloans.com at DNS cutover (handoff item)
-origin: https://main--flexiloans--paolomoz.aem.live
 
 sitemaps:
   main:
+    origin: https://main--flexiloans--paolomoz.aem.live
     source: /query-index.json
     destination: /sitemap.xml
   blog:
+    origin: https://main--flexiloans--paolomoz.aem.live
     source: /blog-index.json
     destination: /sitemap-blog.xml
   hindi:
+    origin: https://main--flexiloans--paolomoz.aem.live
     source: /hi-index.json
     destination: /sitemap-hindi.xml
