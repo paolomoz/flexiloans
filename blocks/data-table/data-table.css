@@ -44,3 +44,8 @@
     padding: 11px 12px;
   }
 }
+
+.table-scroll:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 2px;
+}

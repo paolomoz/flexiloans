@@ -80,3 +80,8 @@
   /* impeccable-disable-next-line design-system-color — intentional warning accent, no palette token */
   stroke: #b45309;
 }
+
+.table-scroll:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 2px;
+}

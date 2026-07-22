@@ -30,6 +30,10 @@ export default function decorate(block) {
   table.append(thead, tbody);
   const scroll = document.createElement('div');
   scroll.className = 'table-scroll';
+  // keyboard access for the horizontal scroller (axe scrollable-region-focusable)
+  scroll.setAttribute('tabindex', '0');
+  scroll.setAttribute('role', 'region');
+  scroll.setAttribute('aria-label', 'Data table');
   scroll.append(table);
   block.replaceChildren(scroll);
 }

@@ -9,9 +9,14 @@
 
 .chips .chip-row {
   display: grid;
-  grid-template-columns: 44px 1fr;
+  grid-template-columns: 44px minmax(0, 1fr);
   gap: var(--sp-3);
   align-items: start;
+}
+
+/* long unbreakable tokens (grievance URLs on /loan/partners) must wrap */
+.chips .chip-row > div {
+  overflow-wrap: anywhere;
 }
 
 .chips .chip-row > div h3 {

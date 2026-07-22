@@ -19,7 +19,7 @@
   font-weight: 700;
   font-size: var(--text-headline);
   color: var(--slate);
-  opacity: 0.55;
+  opacity: 0.75; /* >=3:1 on paper (axe color-contrast, large text) */
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
   line-height: 1;

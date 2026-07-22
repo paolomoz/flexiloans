@@ -366,7 +366,18 @@ main > .section.navy {
   }
 }
 
+/* imported long-form prose: long tokens (URLs, form names) must wrap, and
+   authored CTA buttons wrap their labels instead of forcing h-scroll */
+main .default-content-wrapper {
+  overflow-wrap: break-word;
+}
+
 @media (width <= 767px) {
+  main .default-content-wrapper a.button {
+    white-space: normal;
+    text-align: center;
+  }
+
   main > .section {
     padding-block: var(--sp-5);
   }
