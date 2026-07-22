@@ -30,12 +30,26 @@ export default function decorate(block) {
     section.classList.add(block.classList.contains('left') ? 'toc-left' : 'toc-right');
   }
 
-  // ensure prose headings are addressable
+  // ensure prose headings are addressable, and index them by slugified text
+  const bySlug = new Map();
   document.querySelectorAll('main h2, main h3').forEach((h) => {
     if (!h.id) h.id = slugify(h.textContent);
+    bySlug.set(slugify(h.textContent), h.id);
   });
 
   const links = [...block.querySelectorAll('a[href*="#"]')];
+
+  // self-heal authored anchors whose slug diverges from the pipeline heading
+  // id (github-slugger REMOVES punctuation — "business's" → businesss — while
+  // authored slugs dash it): re-point the link at the heading whose slugified
+  // TEXT matches the link's slugified text.
+  links.forEach((a) => {
+    const slug = (a.getAttribute('href') || '').split('#')[1];
+    if (slug && !document.getElementById(slug)) {
+      const target = bySlug.get(slugify(a.textContent));
+      if (target) a.setAttribute('href', `#${target}`);
+    }
+  });
 
   const nav = document.createElement('nav');
   nav.className = 'toc-nav';
