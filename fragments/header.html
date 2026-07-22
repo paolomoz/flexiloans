@@ -147,7 +147,7 @@ header.header .nav-toggle span { display: block; width: 22px; height: 2px; backg
   header.header .has-menu > a .caret { display: none; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   header.header .nav-links,
   header.header .nav-login,
   header.header .lang-switch { display: none; }
@@ -166,7 +166,11 @@ header.header .nav-toggle span { display: block; width: 22px; height: 2px; backg
   }
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
+  header.header .nav-apply { display: none; }
+}
+
+@media (min-width: 1024px) {
   header.header .nav-toggle { display: none; }
 }
 </style>
