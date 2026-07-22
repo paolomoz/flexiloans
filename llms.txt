@@ -1,0 +1,33 @@
+# FlexiLoans
+
+> FlexiLoans (Epimoney Private Limited, an RBI-registered NBFC) provides
+> collateral-free business loans up to Rs 50 lakh to MSMEs in India, with
+> approval in 48 hours and a 100% digital application. "Loan nahi, Samjho
+> Tarakki hai."
+
+## Products
+
+- [Business Loan](/business-loan): flagship unsecured MSME loan — amounts,
+  rates, eligibility, EMI calculator, FAQs
+- [Term Loan](/loan/term-loan): fixed-tenure business finance
+- [MSME Loan](/msme-loan): loans for micro, small and medium enterprises
+- [Supply Chain Finance](/loan/supply-chain-finance): vendor and dealer finance
+
+## Tools
+
+- [Business Loan EMI Calculator](/calculators/business-loan-emi-calculator)
+- [GST Calculator](/calculators/gst-calculator)
+- [Foreclosure Calculator](/calculators/foreclosure-calculator)
+- [Term Loan Calculator](/calculators/term-loan-calculator)
+
+## Company
+
+- [About](/loan/about): company, vision, achievements
+- [FAQ](/loan/faq): common business-loan questions
+- [Contact](/about-us/contact): support channels and office addresses
+- [Privacy Policy](/privacy-policy)
+
+## Content
+
+- [Blog](/blog): guides on business loans, GST, MSME finance (English)
+- [Hindi](/hi): Hindi-language articles and calculators

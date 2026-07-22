@@ -345,6 +345,21 @@ main .section.chips-container:has(.chips.ice) {
   background: var(--ice-wash);
 }
 
+/* tint bands — authored via section metadata (style: lavender | ice | navy)
+   for blockless prose sections; wins over block-container band rules */
+main > .section.lavender {
+  background: var(--lavender-veil);
+}
+
+main > .section.ice {
+  background: var(--ice-wash);
+}
+
+main > .section.navy {
+  background: var(--navy-trust);
+  color: var(--paper);
+}
+
 @media (width <= 1023px) {
   main > .section {
     padding-block: var(--sp-6);

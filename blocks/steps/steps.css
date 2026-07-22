@@ -48,6 +48,56 @@
   margin-top: var(--sp-1);
 }
 
+/* formula-card — lavender rounded panel composed by the block when a step
+   body carries an "EMI =" formula (design truth: mumbai benefit 4) */
+.steps .formula-card {
+  margin-top: var(--sp-3);
+  padding: var(--sp-4) var(--sp-5);
+  background: var(--lavender-veil);
+  border-radius: var(--r-card);
+  max-width: 64ch;
+}
+
+.steps .formula-card .formula {
+  margin-top: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lede);
+  color: var(--navy-trust);
+}
+
+.steps .formula-card .formula-where {
+  margin-top: var(--sp-2);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.steps .formula-card dl {
+  margin: var(--sp-2) 0 0;
+}
+
+.steps .formula-card dl > div {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: var(--sp-2);
+  padding-block: var(--sp-1);
+  border-bottom: 1px solid rgb(10 50 84 / 12%);
+}
+
+.steps .formula-card dl > div:last-child {
+  border-bottom: 0;
+}
+
+.steps .formula-card dt {
+  font-weight: 700;
+  color: var(--navy-trust);
+}
+
+.steps .formula-card dd {
+  margin: 0;
+  color: var(--slate);
+}
+
 @media (width <= 767px) {
   .steps .step {
     grid-template-columns: 56px 1fr;

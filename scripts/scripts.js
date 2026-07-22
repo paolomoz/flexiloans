@@ -159,7 +159,8 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  // /hi tree serves Hindi content through the same templates
+  document.documentElement.lang = window.location.pathname === '/hi' || window.location.pathname.startsWith('/hi/') ? 'hi' : 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -224,6 +225,70 @@ async function loadStaticFragment(el, name) {
 }
 
 /**
+ * Injects structured data derived from the decorated page: FAQPage when a faq
+ * block is present, Article when an article-header block opens the page.
+ * Optional metadata keys enrich the Article schema: published-time,
+ * modified-time, author. Runs after loadSections (blocks are decorated).
+ * @param {Element} main The main element
+ */
+function injectJsonLd(main) {
+  const graphs = [];
+
+  const faqList = main.querySelector('.faq.block .faq-list');
+  if (faqList) {
+    const items = [...faqList.querySelectorAll('details')]
+      .map((d) => ({
+        '@type': 'Question',
+        name: d.querySelector('summary')?.textContent.trim(),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: d.querySelector('.faq-answer')?.textContent.trim(),
+        },
+      }))
+      .filter((q) => q.name && q.acceptedAnswer.text);
+    if (items.length) {
+      graphs.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: items,
+      });
+    }
+  }
+
+  if (main.querySelector('.article-header.block')) {
+    const headline = main.querySelector('h1')?.textContent.trim();
+    if (headline) {
+      const article = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline,
+        publisher: {
+          '@type': 'Organization',
+          name: 'FlexiLoans',
+          url: 'https://flexiloans.com/',
+        },
+      };
+      const description = getMetadata('description');
+      if (description) article.description = description;
+      const published = getMetadata('published-time');
+      if (published) article.datePublished = published;
+      const modified = getMetadata('modified-time');
+      if (modified) article.dateModified = modified;
+      const author = getMetadata('author');
+      if (author) article.author = { '@type': 'Person', name: author };
+      graphs.push(article);
+    }
+  }
+
+  graphs.forEach((graph) => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(graph);
+    document.head.append(script);
+  });
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -232,6 +297,7 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  injectJsonLd(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

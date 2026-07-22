@@ -1,0 +1,321 @@
+/* foreclosure-calculator — interactive card, chrome mirrors emi-calculator:
+   ruled input rows (label + value box + range with progress fill) | ice-wash
+   result panel (lead EMI figure, ruled rows, SVG donut), authored CTA foot. */
+
+.foreclosure-calculator {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border-radius: var(--r-band);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+}
+
+/* standalone calculator page: the card docks over the page-hero gradient edge */
+main .section.page-hero-container:has(+ .section.foreclosure-calculator-container) {
+  padding-bottom: 96px;
+}
+
+main .section.page-hero-container + .section.foreclosure-calculator-container {
+  padding-top: 0;
+}
+
+main .section.page-hero-container + .section.foreclosure-calculator-container .foreclosure-calculator {
+  margin-top: -72px;
+}
+
+.foreclosure-calculator .calc-heading {
+  margin-bottom: var(--sp-5);
+}
+
+.foreclosure-calculator .calc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+/* ---------- inputs: hairline-ruled rows ---------- */
+
+.foreclosure-calculator .calc-row {
+  padding-block: var(--sp-4);
+  border-bottom: 1px solid rgb(10 50 84 / 12%);
+}
+
+.foreclosure-calculator .calc-row:first-child {
+  padding-top: var(--sp-2);
+}
+
+.foreclosure-calculator .calc-row:last-child {
+  border-bottom: 0;
+  padding-bottom: var(--sp-2);
+}
+
+.foreclosure-calculator .row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.foreclosure-calculator .calc-row label {
+  font-weight: 600;
+  color: var(--navy-trust);
+  font-size: 1.0625rem;
+}
+
+.foreclosure-calculator .calc-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy-trust);
+  background: var(--ice-wash);
+  border: 0;
+  border-radius: var(--r-control);
+  padding: 9px 16px;
+  width: 128px;
+  text-align: right;
+}
+
+.foreclosure-calculator .calc-value:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 1px;
+}
+
+.foreclosure-calculator input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  margin-top: var(--sp-3);
+  cursor: pointer;
+}
+
+.foreclosure-calculator input[type="range"]:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 2px;
+  border-radius: var(--r-pill);
+}
+
+.foreclosure-calculator input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    to right,
+    var(--navy-trust) var(--range-progress, 0%),
+    rgb(10 50 84 / 14%) var(--range-progress, 0%)
+  );
+}
+
+.foreclosure-calculator input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid var(--navy-trust);
+  box-shadow: 0 1px 4px rgb(10 50 84 / 25%);
+}
+
+.foreclosure-calculator input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    to right,
+    var(--navy-trust) var(--range-progress, 0%),
+    rgb(10 50 84 / 14%) var(--range-progress, 0%)
+  );
+}
+
+.foreclosure-calculator input[type="range"]::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid var(--navy-trust);
+  box-shadow: 0 1px 4px rgb(10 50 84 / 25%);
+}
+
+.foreclosure-calculator .calc-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--slate);
+  font-size: 0.8125rem;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- results: stat-ledger hierarchy on ice-wash inset ---------- */
+
+.foreclosure-calculator .calc-result {
+  background: var(--ice-wash);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+}
+
+.foreclosure-calculator .result-lead .label {
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  color: var(--slate);
+  letter-spacing: 0.01em;
+}
+
+.foreclosure-calculator .result-lead .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.4rem + 1.6vw, 2.625rem);
+  color: var(--navy-trust);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.foreclosure-calculator .result-rows {
+  margin-top: var(--sp-4);
+  border-top: 1px solid rgb(10 50 84 / 16%);
+}
+
+.foreclosure-calculator .result-rows > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding-block: 10px;
+  border-bottom: 1px solid rgb(10 50 84 / 16%);
+}
+
+.foreclosure-calculator .result-rows dt {
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+.foreclosure-calculator .result-rows dd {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy-trust);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+
+/* ---------- interest breakup: two-segment SVG donut + legend ---------- */
+
+.foreclosure-calculator .breakup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+.foreclosure-calculator .breakup svg {
+  width: 132px;
+  height: 132px;
+  flex-shrink: 0;
+}
+
+.foreclosure-calculator .donut-track {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 24;
+}
+
+.foreclosure-calculator .donut-arc {
+  fill: none;
+  stroke: var(--navy-trust);
+  stroke-width: 24;
+  transition: stroke-dasharray 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.foreclosure-calculator .breakup-meta .label {
+  font-weight: 600;
+  color: var(--navy-trust);
+  font-size: 0.9375rem;
+}
+
+.foreclosure-calculator .breakup-legend {
+  list-style: none;
+  margin-top: var(--sp-2);
+}
+
+.foreclosure-calculator .breakup-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--slate);
+  font-size: 0.875rem;
+  padding-block: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.foreclosure-calculator .breakup-legend .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.foreclosure-calculator .breakup-legend .dot.paid {
+  background: var(--navy-trust);
+}
+
+.foreclosure-calculator .breakup-legend .dot.saved {
+  background: var(--paper);
+  border: 1px solid rgb(10 50 84 / 35%);
+}
+
+.foreclosure-calculator .breakup-legend strong {
+  color: var(--navy-trust);
+  font-weight: 700;
+}
+
+/* ---------- foot: authored Apply CTA under a hairline ---------- */
+
+.foreclosure-calculator .calc-foot {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px solid rgb(10 50 84 / 12%);
+  display: flex;
+  justify-content: center;
+}
+
+.foreclosure-calculator .calc-foot p.button-wrapper {
+  margin: 0;
+}
+
+/* ---------- responsive ---------- */
+
+@media (width <= 1023px) {
+  .foreclosure-calculator .calc-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+}
+
+@media (width <= 767px) {
+  .foreclosure-calculator {
+    padding: var(--sp-4);
+  }
+
+  main .section.page-hero-container + .section.foreclosure-calculator-container .foreclosure-calculator {
+    margin-top: -56px;
+  }
+
+  .foreclosure-calculator .calc-result {
+    padding: var(--sp-4);
+  }
+
+  .foreclosure-calculator .calc-foot a.button {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foreclosure-calculator .donut-arc {
+    transition: none;
+  }
+}

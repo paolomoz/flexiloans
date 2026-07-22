@@ -7,13 +7,14 @@
     content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
     move-to-http-header="true"
   >
-  <title>Page not found</title>
+  <title>Page not found | FlexiLoans</title>
   <script nonce="aem" type="text/javascript">
     window.isErrorPage = true;
     window.errorCode = '404';
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="Page not found">
+  <link rel="icon" href="/favicon.png">
   <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
   <script nonce="aem" type="module">
     window.addEventListener('load', () => {
@@ -21,7 +22,7 @@
         const { origin, pathname } = new URL(document.referrer);
         if (origin === window.location.origin) {
           const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
+          backBtn.classList.add('button', 'accent', 'error-button-back');
           backBtn.href = pathname;
           backBtn.textContent = 'Go back';
           backBtn.title = 'Go back';
@@ -37,18 +38,55 @@
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
+    /* branded 404: hero-gradient ground, display numeral, dual CTA */
     main.error {
-      min-height: calc(100vh - var(--nav-height));
+      min-height: 100vh;
       display: flex;
       align-items: center;
+      background: linear-gradient(0deg, #532d54 0%, #2b5582 100%);
+    }
+
+    main.error > .section {
+      max-width: var(--max-width, 1240px);
+      margin-inline: auto;
+      padding: 160px var(--sp-4) var(--sp-section);
+      text-align: center;
     }
 
     main.error .error-number {
-      width: 100%;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(6rem, 4rem + 8vw, 11rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: rgb(255 255 255 / 22%);
+      font-variant-numeric: tabular-nums;
     }
 
-    main.error .error-number text {
-      font-family: monospace;
+    main.error .error-message {
+      color: #fff;
+      font-size: var(--text-headline);
+      margin-top: var(--sp-3);
+    }
+
+    main.error .error-lede {
+      color: rgb(255 255 255 / 85%);
+      font-size: var(--text-lede);
+      max-width: 52ch;
+      margin: var(--sp-3) auto 0;
+    }
+
+    main.error .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--sp-3);
+      margin-top: var(--sp-5);
+    }
+
+    main.error a.button.error-button-back {
+      color: #fff;
+      border-color: rgb(255 255 255 / 75%);
     }
   </style>
   <link rel="stylesheet" href="/styles/lazy-styles.css">
@@ -58,12 +96,11 @@
   <header></header>
   <main class="error">
     <div class="section">
-      <svg viewBox="1 0 38 18" class="error-number">
-        <text x="0" y="17">404</text>
-      </svg>
-      <h2 class="error-message">Page Not Found</h2>
+      <p class="error-number" aria-hidden="true">404</p>
+      <h2 class="error-message">We couldn't find that page</h2>
+      <p class="error-lede">The page you're looking for may have moved. Head back to the home page, or apply for a collateral-free business loan in minutes.</p>
       <p class="button-container">
-        <a href="/" class="button secondary error-button-home">Go home</a>
+        <a href="/" class="button primary error-button-home">Go home</a>
       </p>
     </div>
   </main>

@@ -1,0 +1,12 @@
+version: 1
+
+sitemaps:
+  main:
+    source: /query-index.json
+    destination: /sitemap.xml
+  blog:
+    source: /blog-index.json
+    destination: /sitemap-blog.xml
+  hindi:
+    source: /hi-index.json
+    destination: /sitemap-hindi.xml

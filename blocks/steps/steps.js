@@ -11,6 +11,48 @@
 const ORDINAL_RE = /^(?:step\s*)?\d{1,2}\s*[.):]?$/i;
 const HEAD_PREFIX_RE = /^(?:step\s*)?\d{1,2}\s*[.):]\s+/i;
 
+/**
+ * A step body carrying an EMI formula (p starting "EMI =", optional "Where,"
+ * p, following ul of "X = definition" items) is composed into a .formula-card
+ * panel with a dt/dd ledger — the design truth's lavender formula panel.
+ */
+function buildFormulaCard(body) {
+  const formula = [...body.querySelectorAll(':scope > p')]
+    .find((p) => /^EMI\s*=/.test(p.textContent.trim()));
+  if (!formula) return;
+
+  const card = document.createElement('div');
+  card.className = 'formula-card';
+  formula.before(card);
+  formula.classList.add('formula');
+  card.append(formula);
+
+  let next = card.nextElementSibling;
+  if (next && next.matches('p') && /^where\b/i.test(next.textContent.trim())) {
+    next.classList.add('formula-where');
+    card.append(next);
+    next = card.nextElementSibling;
+  }
+  if (next && next.matches('ul')) {
+    const dl = document.createElement('dl');
+    [...next.children].forEach((li) => {
+      const m = li.textContent.trim().match(/^(\S{1,3})\s*[=–—-]\s*(.+)$/);
+      const row = document.createElement('div');
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      if (m) {
+        [, dt.textContent, dd.textContent] = m;
+      } else {
+        dd.textContent = li.textContent.trim();
+      }
+      row.append(dt, dd);
+      dl.append(row);
+    });
+    next.remove();
+    card.append(dl);
+  }
+}
+
 function collectBody(row) {
   const body = document.createElement('div');
   body.className = 'step-body';
@@ -47,6 +89,8 @@ export default function decorate(block) {
         node.textContent = node.textContent.replace(HEAD_PREFIX_RE, '');
       }
     }
+
+    buildFormulaCard(body);
 
     const ordinal = document.createElement('p');
     ordinal.className = 'step-ordinal';

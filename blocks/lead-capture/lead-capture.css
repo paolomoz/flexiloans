@@ -28,6 +28,14 @@ main .section.lead-capture-container {
   margin-top: var(--sp-4);
 }
 
+.lead-capture .lc-error {
+  /* impeccable-disable-next-line design-system-color — functional validation-error red (no error token in DESIGN.md; 6.5:1 on paper) */
+  color: #b3261e;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-top: var(--sp-2);
+}
+
 .lead-capture .lc-sr-only {
   position: absolute;
   width: 1px;

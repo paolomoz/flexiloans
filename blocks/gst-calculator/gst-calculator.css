@@ -1,0 +1,289 @@
+/* gst-calculator — interactive card, chrome mirrors emi-calculator: amount
+   row (label + value box + range with progress fill) + segmented mode/rate
+   radios | ice-wash result panel (lead GST figure, ruled base/total rows). */
+
+.gst-calculator {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border-radius: var(--r-band);
+  box-shadow: var(--shadow-card);
+  padding: var(--sp-6);
+}
+
+/* standalone calculator page: the card docks over the page-hero gradient edge */
+main .section.page-hero-container:has(+ .section.gst-calculator-container) {
+  padding-bottom: 96px;
+}
+
+main .section.page-hero-container + .section.gst-calculator-container {
+  padding-top: 0;
+}
+
+main .section.page-hero-container + .section.gst-calculator-container .gst-calculator {
+  margin-top: -72px;
+}
+
+.gst-calculator .calc-heading {
+  margin-bottom: var(--sp-5);
+}
+
+.gst-calculator .calc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: var(--sp-6);
+  align-items: start;
+}
+
+/* ---------- amount row ---------- */
+
+.gst-calculator .calc-row {
+  padding-block: var(--sp-2) var(--sp-4);
+  border-bottom: 1px solid rgb(10 50 84 / 12%);
+}
+
+.gst-calculator .row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.gst-calculator .calc-row label,
+.gst-calculator .calc-segments legend {
+  font-weight: 600;
+  color: var(--navy-trust);
+  font-size: 1.0625rem;
+}
+
+.gst-calculator .calc-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--navy-trust);
+  background: var(--ice-wash);
+  border: 0;
+  border-radius: var(--r-control);
+  padding: 9px 16px;
+  width: 148px;
+  text-align: right;
+}
+
+.gst-calculator .calc-value:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 1px;
+}
+
+.gst-calculator input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  background: transparent;
+  margin-top: var(--sp-3);
+  cursor: pointer;
+}
+
+.gst-calculator input[type="range"]:focus-visible {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 2px;
+  border-radius: var(--r-pill);
+}
+
+.gst-calculator input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    to right,
+    var(--navy-trust) var(--range-progress, 0%),
+    rgb(10 50 84 / 14%) var(--range-progress, 0%)
+  );
+}
+
+.gst-calculator input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid var(--navy-trust);
+  box-shadow: 0 1px 4px rgb(10 50 84 / 25%);
+}
+
+.gst-calculator input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(
+    to right,
+    var(--navy-trust) var(--range-progress, 0%),
+    rgb(10 50 84 / 14%) var(--range-progress, 0%)
+  );
+}
+
+.gst-calculator input[type="range"]::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid var(--navy-trust);
+  box-shadow: 0 1px 4px rgb(10 50 84 / 25%);
+}
+
+.gst-calculator .calc-scale {
+  display: flex;
+  justify-content: space-between;
+  color: var(--slate);
+  font-size: 0.8125rem;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- segmented radios (mode + rate) ---------- */
+
+.gst-calculator .calc-segments {
+  border: 0;
+  padding: var(--sp-4) 0 0;
+  margin: 0;
+}
+
+.gst-calculator .segment-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.gst-calculator .segment {
+  cursor: pointer;
+}
+
+.gst-calculator .segment input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gst-calculator .segment span {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1.5px solid rgb(10 50 84 / 30%);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--navy-trust);
+  font-variant-numeric: tabular-nums;
+}
+
+.gst-calculator .segment input:checked + span {
+  background: var(--navy-trust);
+  border-color: var(--navy-trust);
+  color: var(--paper);
+}
+
+.gst-calculator .segment input:focus-visible + span {
+  outline: 3px solid rgb(10 50 84 / 25%);
+  outline-offset: 2px;
+}
+
+.gst-calculator .segment-hint {
+  color: var(--slate);
+  font-size: 0.8125rem;
+  margin-top: var(--sp-2);
+}
+
+/* ---------- results: stat-ledger hierarchy on ice-wash inset ---------- */
+
+.gst-calculator .calc-result {
+  background: var(--ice-wash);
+  border-radius: var(--r-card);
+  padding: var(--sp-5);
+}
+
+.gst-calculator .result-lead .label {
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  color: var(--slate);
+  letter-spacing: 0.01em;
+}
+
+.gst-calculator .result-lead .num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 1.4rem + 1.6vw, 2.625rem);
+  color: var(--navy-trust);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+
+.gst-calculator .result-rows {
+  margin-top: var(--sp-4);
+  border-top: 1px solid rgb(10 50 84 / 16%);
+}
+
+.gst-calculator .result-rows > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-3);
+  padding-block: 10px;
+  border-bottom: 1px solid rgb(10 50 84 / 16%);
+}
+
+.gst-calculator .result-rows dt {
+  color: var(--slate);
+  font-size: 0.9375rem;
+}
+
+.gst-calculator .result-rows dd {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--navy-trust);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.0625rem;
+  white-space: nowrap;
+}
+
+/* ---------- foot: authored Apply CTA under a hairline ---------- */
+
+.gst-calculator .calc-foot {
+  margin-top: var(--sp-5);
+  padding-top: var(--sp-5);
+  border-top: 1px solid rgb(10 50 84 / 12%);
+  display: flex;
+  justify-content: center;
+}
+
+.gst-calculator .calc-foot p.button-wrapper {
+  margin: 0;
+}
+
+/* ---------- responsive ---------- */
+
+@media (width <= 1023px) {
+  .gst-calculator .calc-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+}
+
+@media (width <= 767px) {
+  .gst-calculator {
+    padding: var(--sp-4);
+  }
+
+  main .section.page-hero-container + .section.gst-calculator-container .gst-calculator {
+    margin-top: -56px;
+  }
+
+  .gst-calculator .calc-result {
+    padding: var(--sp-4);
+  }
+
+  .gst-calculator .calc-foot a.button {
+    white-space: normal;
+    text-align: center;
+  }
+}

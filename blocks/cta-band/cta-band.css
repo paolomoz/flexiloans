@@ -104,6 +104,30 @@ main .section.cta-band-container:has(.cta-band.bare) {
   max-width: none;
 }
 
+/* ---------- wide — navy full-bleed, copy left | actions right (calculator) */
+.cta-band.wide {
+  max-width: none;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: var(--sp-5);
+  align-items: center;
+}
+
+.cta-band.wide h2 {
+  max-width: 18ch;
+  line-height: 1.15;
+}
+
+.cta-band.wide .cta-band-sub {
+  max-width: 52ch;
+}
+
+.cta-band.wide .cta-band-actions {
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
 /* ---------- bare — button(s) only on the plum band ---------- */
 .cta-band.bare {
   max-width: none;
@@ -114,11 +138,13 @@ main .section.cta-band-container:has(.cta-band.bare) {
 }
 
 @media (width <= 1023px) {
-  .cta-band.split {
+  .cta-band.split,
+  .cta-band.wide {
     grid-template-columns: 1fr;
   }
 
-  .cta-band.split .cta-band-actions {
+  .cta-band.split .cta-band-actions,
+  .cta-band.wide .cta-band-actions {
     justify-content: flex-start;
   }
 }

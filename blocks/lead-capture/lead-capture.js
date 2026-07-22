@@ -1,8 +1,10 @@
 /**
- * lead-capture — presentational phone-capture card (migrated/loan/faq):
- * white card on an ice band with a tel input, a primary action button and a
- * WhatsApp opt-in checkbox. Non-submitting: <div>-based, button type=button
- * (CSP: all behavior wired here, no inline handlers).
+ * lead-capture — phone-capture card (migrated/loan/faq): white card on an
+ * ice band with a tel input, a primary action button and a WhatsApp opt-in
+ * checkbox. <div>-based, button type=button (CSP: all behavior wired here,
+ * no inline handlers). Submit reproduces the live site's validatePhone():
+ * require 10 digits, then open the loan funnel in a new tab (the source
+ * widget never transmits the number itself).
  *
  * Authoring rows (single-cell; decode is content-based/order-tolerant):
  *   - <h2> card heading ("Check your Loan Eligibility")
@@ -77,6 +79,26 @@ export default function decorate(block) {
   button.className = 'button primary';
   button.textContent = buttonLabel;
 
+  // live-parity submit: 10 digits required, then open the funnel
+  const FUNNEL = 'https://loans.flexiloans.com/?journeyName=flow_dashboard&nlp=2&utm_source=Website&utm_medium=Web&utm_campaign=organic&utm_term=organic&utm_content=organic';
+  const error = document.createElement('p');
+  error.className = 'lc-error';
+  error.setAttribute('role', 'alert');
+  error.hidden = true;
+  button.addEventListener('click', () => {
+    if (input.value.length !== 10) {
+      error.textContent = 'Please enter a valid 10-digit mobile number';
+      error.hidden = false;
+      input.focus();
+      return;
+    }
+    error.hidden = true;
+    window.open(FUNNEL, '_blank', 'noopener');
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') button.click();
+  });
+
   row.append(label, input, button);
 
   const consent = document.createElement('label');
@@ -95,6 +117,6 @@ export default function decorate(block) {
   mark.loading = 'lazy';
   consent.append(checkbox, span, mark);
 
-  card.append(row, consent);
+  card.append(row, error, consent);
   block.replaceChildren(card);
 }

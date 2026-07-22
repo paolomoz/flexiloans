@@ -2,6 +2,8 @@
  * cta-band — closing call-to-action band. Variants:
  *   (default / centered)  navy full-bleed band, centered h2 + lede + CTA row
  *   split                 plum rounded card, copy 7 | actions 5 (term-loan)
+ *   wide                  navy full-bleed, copy left | actions right (calculator)
+ *   card                  rounded navy card on paper (loan/about)
  *   bare                  plum band, button(s) only (cancelled-cheque)
  *
  * Authoring: single-cell rows (or one flattened cell), order tolerant:

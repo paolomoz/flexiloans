@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://main--flexiloans--paolomoz.aem.live/sitemap.xml
+Sitemap: https://main--flexiloans--paolomoz.aem.live/sitemap-blog.xml
+Sitemap: https://main--flexiloans--paolomoz.aem.live/sitemap-hindi.xml
