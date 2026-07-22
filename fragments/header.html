@@ -50,7 +50,8 @@ header.header .nav-bar {
   padding: 14px var(--sp-4);
 }
 
-header.header .nav-logo img { height: 68px; width: auto; }
+header.header .nav-logo { flex-shrink: 0; }
+header.header .nav-logo img { height: 68px; width: auto; max-width: none; }
 header.header .nav-links { display: flex; gap: 4px; list-style: none; margin: 0; margin-inline: auto; padding: 0; }
 header.header .nav-links > li > a {
   display: inline-block;
