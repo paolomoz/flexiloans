@@ -1,0 +1,46 @@
+/* data-table — generic article table, rates-table register: navy thead,
+   hairline body rules, horizontal scroller on overflow. */
+
+.data-table .table-scroll {
+  overflow-x: auto;
+  border-radius: var(--r-card);
+  border: 1px solid rgb(10 50 84 / 14%);
+}
+
+.data-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.data-table thead th {
+  background: var(--navy-trust);
+  color: var(--paper);
+  font-weight: 700;
+  text-align: left;
+  padding: 14px 18px;
+  white-space: nowrap;
+}
+
+.data-table tbody td {
+  padding: 13px 18px;
+  border-top: 1px solid rgb(10 50 84 / 12%);
+  color: var(--slate);
+  vertical-align: top;
+}
+
+.data-table tbody td:first-child {
+  color: var(--navy-trust);
+  font-weight: 600;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: rgb(10 50 84 / 3%);
+}
+
+@media (width <= 767px) {
+  .data-table thead th,
+  .data-table tbody td {
+    padding: 11px 12px;
+  }
+}
