@@ -44,8 +44,8 @@ body:has(main .section.article-header-container) header.header {
 header.header .nav-bar {
   display: flex;
   align-items: center;
-  gap: var(--sp-3);
-  max-width: var(--container);
+  gap: 12px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 14px var(--sp-4);
 }
@@ -58,9 +58,9 @@ header.header .nav-links > li > a {
   white-space: nowrap;
   color: rgb(255 255 255 / 92%);
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  padding: 8px 12px;
+  padding: 8px 10px;
   border-radius: var(--r-pill);
   transition: background-color 160ms ease;
 }
@@ -137,6 +137,10 @@ header.header .nav-apply:hover { transform: translateY(-1px); box-shadow: 0 4px 
 header.header .nav-toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
 /* impeccable-disable-next-line design-system-radius — captured canon.css value */
 header.header .nav-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; border-radius: 2px; }
+
+@media (min-width: 768px) and (max-width: 1439px) {
+  header.header .nav-logo img { height: 48px; }
+}
 
 @media (max-width: 1023px) {
   header.header .mega { display: none; }
