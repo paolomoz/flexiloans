@@ -1,5 +1,8 @@
 version: 1
 
+# origin flips to https://flexiloans.com at DNS cutover (handoff item)
+origin: https://main--flexiloans--paolomoz.aem.live
+
 sitemaps:
   main:
     source: /query-index.json

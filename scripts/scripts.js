@@ -232,6 +232,10 @@ async function loadStaticFragment(el, name) {
  * @param {Element} main The main element
  */
 function injectJsonLd(main) {
+  // server-rendered schema (json-ld metadata property) wins — the client
+  // path only supplements pages that ship none (F-102: non-JS crawlers
+  // never see JS-injected schema)
+  if (document.head.querySelector('script[type="application/ld+json"]')) return;
   const graphs = [];
 
   const faqList = main.querySelector('.faq.block .faq-list');
