@@ -56,6 +56,14 @@ main .section.article-header-container {
   font-variant-numeric: tabular-nums;
 }
 
+/* article register: on article pages, prose/tables/faq outside the toc grids
+   read at the article measure (imported articles without a toc) */
+body:has(.article-header-container) main .section:not(.toc-left, .toc-right) > .default-content-wrapper,
+body:has(.article-header-container) main .section:not(.toc-left, .toc-right) > .data-table-wrapper,
+body:has(.article-header-container) main .section:not(.toc-left, .toc-right) > .faq-wrapper {
+  max-width: 74ch;
+}
+
 @media (width <= 767px) {
   main .section.article-header-container {
     padding-block: 120px 0;
